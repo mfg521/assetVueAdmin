@@ -4,39 +4,34 @@
       <div style="height: 100%">
 
         <!--<div class="floorsix" v-show="changeIsShow" :class="{'meng ': changeIsShow}" style="height: 0%">-->
-        <div class="floorsix" style="height: 0% ">
+        <div class="floorfive" style="height: 0% ">
           <a>
-            <div class="one_six" @click="clickForRoomInfo(621)" @mouseover=""></div>
+            <div class="one_five" @click="clickForRoomInfo(621)" @mouseover=""></div>
           </a>
           <a>
-            <div class="two_six" @click="clickForRoomInfo(625)"></div>
+            <div class="two_five" @click="clickForRoomInfo(625)"></div>
           </a>
           <a>
-            <div class="three_six" @click="clickForRoomInfo(628)"></div>
+            <div class="three_five" @click="clickForRoomInfo(628)"></div>
           </a>
           <a>
-            <div class="four_six" @click="clickForRoomInfo(630)"></div>
+            <div class="four_five" @click="clickForRoomInfo(630)"></div>
           </a>
           <a>
-            <div class="five_six" @click="clickForRoomInfo(635)"></div>
-          </a>
-
-          <a>
-            <div class="seven_six" @click="clickForRoomInfo(619)"></div>
-          </a>
-          <a>
-            <div class="eight_six" @click="clickForRoomInfo(612)"></div>
+            <div class="five_five" @click="clickForRoomInfo(635)"></div>
           </a>
 
           <a>
-            <div class="nine_six" @click="clickForRoomInfo(607)"></div>
-          </a>
-
-          <a>
-            <div class="ten_six" @click="clickForRoomInfo(605)"></div>
+            <div class="seven_five" @click="clickForRoomInfo(619)"></div>
           </a>
           <a>
-            <div class="eleven_six" @click="clickForRoomInfo(601)"></div>
+            <div class="eight_five" @click="clickForRoomInfo(612)"></div>
+          </a>
+          <a>
+            <div class="ten_five" @click="clickForRoomInfo(605)"></div>
+          </a>
+          <a>
+            <div class="eleven_five" @click="clickForRoomInfo(601)"></div>
           </a>
         </div>
       </div>
@@ -63,30 +58,30 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../../common/stylus/mixins.styl"
 
-  .floorsix {
+  .floorfive {
 
     width: 100%
     padding-bottom 50%
-    background: url("./../../../../static/images/floor/6thFloor.jpg") no-repeat
+    background: url("./../../../../static/images/floor/5thFloor.png") no-repeat
     background-size: 100% //背景图片所占夫级的百分比
     position: relative
     text-align: center
     height 0Px
   }
 
-  div.floorsix div {
+  div.floorfive div {
     border 2px solid #000000
     margin-right -1px
 
   }
 
-  div.floorsix div:hover {
+  div.floorfive div:hover {
     border 2px solid blue
     background-color rgba(150, 150, 91, 0.51)
 
   }
 
-  .one_six {
+  .one_five {
     width: 28%
     padding-bottom 13% //这个是宽度的百分比
     height 0px
@@ -95,7 +90,7 @@
     flex 1 1 auto
   }
 
-  .two_six {
+  .two_five {
     width: 14%
     padding-bottom 13% //这个是宽度的百分比
     height 0px
@@ -103,7 +98,7 @@
     float left
   }
 
-  .three_six {
+  .three_five {
     width: 16%
     padding-bottom 13% //这个是宽度的百分比
     height 0px
@@ -111,7 +106,7 @@
     float left
   }
 
-  .four_six {
+  .four_five {
     width: 14%
     padding-bottom 13% //这个是宽度的百分比
     height 0px
@@ -119,7 +114,7 @@
     float left
   }
 
-  .five_six {
+  .five_five {
     width: 28%
     padding-bottom 13% //这个是宽度的百分比
     height 0px
@@ -129,7 +124,7 @@
 
   //下部分
 
-  .seven_six {
+  .seven_five {
     position: absolute;
     top: 63.5%
     width: 20%
@@ -139,7 +134,7 @@
     height 0px
   }
 
-  .eight_six {
+  .eight_five {
     position: absolute;
     top: 59.5%
     left: 20%
@@ -150,18 +145,7 @@
     height 0px
   }
 
-  .nine_six {
-    position: absolute;
-    top: 42%
-    left: 66%
-    width: 6%
-    padding-bottom: 6%
-    background-color rgba(30, 20, 91, 0.51)
-    float left
-    height 0px
-  }
-
-  .ten_six {
+  .ten_five {
     position: absolute;
     top: 59.5%
     left: 57%
@@ -172,7 +156,7 @@
     height 0px
   }
 
-  .eleven_six {
+  .eleven_five {
     position: absolute;
     top: 63.5%
     left 80%

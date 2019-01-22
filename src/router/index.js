@@ -196,6 +196,21 @@ export const asyncRouterMap = [
       component: _import('buildingO/Floor6/index'),
       name: '一号楼6层',
       authority: 'assetManager'
+    },{
+      path: 'floor5',
+      component: _import('buildingO/Floor5/index'),
+      name: '一号楼5层',
+      authority: 'assetManager'
+    },{
+      path: 'floor3',
+      component: _import('buildingO/Floor3/index'),
+      name: '一号楼3层',
+      authority: 'assetManager'
+    },{
+      path: 'floorG',
+      component: _import('buildingO/FloorG/index'),
+      name: '一号楼G层',
+      authority: 'assetManager'
     }]
   },
   {
