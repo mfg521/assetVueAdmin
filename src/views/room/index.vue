@@ -372,7 +372,7 @@
   @import "../../common/stylus/mixins.styl"
   .node {
     width 63%
-    padding-bottom 50%
+    padding-bottom 60%
     /*background: url("../../../pages/rooms/6FloorRooms/images/621-622.png") no-repeat*/
     //background-size 63% //背景照片
 

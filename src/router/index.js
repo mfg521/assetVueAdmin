@@ -211,6 +211,11 @@ export const asyncRouterMap = [
       component: _import('buildingO/FloorG/index'),
       name: '一号楼G层',
       authority: 'assetManager'
+    },{
+      path: 'floor26',
+      component: _import('buildingO/Floor26/index'),
+      name: '二号楼G层',
+      authority: 'assetManager'
     }]
   },
   {
