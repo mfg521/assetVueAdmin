@@ -252,6 +252,13 @@ export const asyncRouterMap = [
       name: '服务状态监控',
       authority: 'serviceZipkinManager'
     }]
+  },
+  {
+    path: '/empManager',
+    component: _import('employee/index'),
+    name: 'empManager',
+    icon: 'setting',
+    authority: 'asset'
   }];
 
 

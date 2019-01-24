@@ -49,7 +49,7 @@
         <template scope="scope">
           <span v-if="scope.row.assetStatus===0">FREE</span>
           <span v-else-if="scope.row.assetStatus===1">IN USE</span>
-          <span v-else="scope.row.assetStatus===2">BROKEN</span>
+          <span v-else>BROKEN</span>
         </template>
       </el-table-column>
       <el-table-column width="180" align="center" label="taggerNumber">
@@ -110,6 +110,11 @@
           <el-input v-if="dialogStatus == 'create'" v-model="form.beijingCode" placeholder="please input beijingCode"></el-input>
           <el-input v-else v-model="form.beijingCode" placeholder="beijingCode"></el-input>
         </el-form-item>
+        <el-form-item label="assetStatus">
+          <el-select class="filter-item" v-model="form.assetStatus" placeholder="please select assetStatus">
+            <el-option v-for="item in  assetStatusOptions" :key="item" :label="assetStatusOptionsC[item]" :value="item"></el-option>
+          </el-select>
+        </el-form-item>
 
         <!--<el-form-item label="描述">-->
           <!--<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" placeholder="请输入内容"-->
@@ -168,7 +173,6 @@
   import {mapGetters} from 'vuex';
 
   var placeholders = {"assetType": "input assetClass","serialNumber": "input serialNumber", "computerModel": "input computerModel"};
-
   export default {
     name: 'user',
     data() {
@@ -178,6 +182,7 @@
           beijingCode: undefined,
           serialNumber: undefined,
           assetType: 'cpu',
+          assetStatus: 0,
           assetQrcodeAddress: undefined
         },
         rules: {
@@ -230,6 +235,8 @@
         },
         assetOptions: ['cpu', 'ldaptop','moniter','phone','avt',
           'server','storage','network switch','work station','it rack','printer','others'],
+        assetStatusOptions: [0,1,2],
+        assetStatusOptionsC:['FREE','IN USE','BROKEN'],
         dialogFormVisible: false,
         dialogStatus: '',
         userManager_btn_edit: false,
@@ -389,6 +396,7 @@
           beijingCode: undefined,
           serialNumber: undefined,
           assetType: 'cpu',
+          assetStatus: 0,
           assetQrcodeAddress: undefined
         };
       },
