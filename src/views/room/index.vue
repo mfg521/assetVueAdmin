@@ -64,7 +64,7 @@
               </div>
               <div>
                 <a class="guide_item"><i class="iconfont icon-zhuji" @click="clickForAssetInfo('cpu')"></i></a>
-                <a class="guide_item"><i class="iconfont icon-computer" @click="clickForAssetInfo('monitor')"></i></a>
+                <a class="guide_item"><i class="iconfont icon-computer" @click="clickForAssetInfo('mon')"></i></a>
                 <a class="guide_item"><i class="iconfont icon-laptop" @click="clickForAssetInfo('laptop')"></i></a>
                 <a class="guide_item"><i class="iconfont icon-telephone2" @click="clickForAssetInfo('phone')"></i></a>
               </div>
@@ -100,7 +100,7 @@
             <div v-else>
               <div>
                 <span v-if="this.assetType==='cpu'">NO CPU ASSET</span>
-                <span v-else-if="this.assetType==='moniter'">No MONITER ASSET</span>
+                <span v-else-if="this.assetType==='mon'">No MONITER ASSET</span>
                 <span v-else-if="this.assetType==='laptop'">No LAPTOP ASSET</span>
                 <span v-else="this.assetType==='phone'">No PHONE ASSET</span>
                 <span @click="dialog.dialogFormVisible = true"><el-button type="info">Add new</el-button></span>
@@ -228,6 +228,7 @@
 
       //根据用户编号和用户的资产号码获取用户对应资产的详细信息
       async clickForAssetInfo(assetType) {
+        console.log(assetType)
         this.CurentAseet = ''
         this.assetType = assetType;
         const employeeUuid = this.CurentEmployee.employeeUuid

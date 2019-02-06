@@ -9,6 +9,7 @@
           <el-option label="assetType" value="assetType"></el-option>
           <el-option label="serialNumber" value="serialNumber"></el-option>
           <el-option label="computerModel" value="computerModel"></el-option>
+          <el-option label="taggerNumber" value="taggerNumber"></el-option>
         </el-select>
       </el-input>
 
@@ -123,7 +124,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="cancel('form')">cancel</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" @click="create('form')">confire</el-button>
+        <el-button v-if="dialogStatus=='create'" type="primary" @click="create('form')">confirm</el-button>
         <el-button v-else type="primary" @click="update('form')">confire</el-button>
       </div>
     </el-dialog>
@@ -137,10 +138,8 @@
           <div style="float: left">
             <img src="../../../static/images/others/cpelogo.png" style="width: 26px"/>
             <span style="font-size: 14px"> ASSET DETAILS: </span>
-            <p style="margin: 0;font-size: 10px"><span style="margin-right: 5px; font-weight: bold;font-size: 10px">Serial Number</span>
-            </p>
-            <p style="margin: 0;font-size: 10px"><span style="margin-right: 5px; font-size: 10px">{{this.form.serialNumber}}</span>
-            </p>
+            <p style="margin-top:8px;margin-left: 5px;font-size: 10px;text-align: center;color: black" class="font-6px"><span style="margin-right: 5px; font-weight: bold;font-size: 10px">SN:</span><span style="margin-right: 5px; font-size: 10px;font-weight: bold">{{this.form.serialNumber}}</span></p>
+            <p style="margin-left: 5px;font-size: 10px;color: black"><span style="margin-right: 5px; font-weight: bold;font-size: 10px;">TN:</span><span style="margin-right: 5px; font-weight: bold;font-size: 10px;">{{this.form.taggerNumber}}</span></p>
           </div>
           <div>
             <img :src="'http://172.30.1.81:8765/api/asset/employee/qrCode?assetQrcodeAddress='+this.form.assetQrcodeAddress" style="width:83px; height: 83px"/>
@@ -234,7 +233,7 @@
           limit: 20,
         },
         assetOptions: ['cpu', 'ldaptop','moniter','phone','avt',
-          'server','storage','network switch','work station','it rack','printer','others'],
+          'server','storage','network switch','work station','it rack','printer','Thin Client','Projector','Fax Machine','others'],
         assetStatusOptions: [0,1,2],
         assetStatusOptionsC:['FREE','IN USE','BROKEN'],
         dialogFormVisible: false,
@@ -332,7 +331,7 @@
           type: 'warning'
         })
           .then(() => {
-            delObj(row.id)
+            delObj(row.assetId)
               .then(() => {
                 this.$notify({
                   title: '成功',
@@ -420,3 +419,9 @@
     }
   }
 </script>
+<style lang="scss">
+  .font-6px{
+    transform: scale(0.8);
+    font-size: 12px;
+  }
+</style>

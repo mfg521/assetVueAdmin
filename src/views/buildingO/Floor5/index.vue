@@ -6,32 +6,15 @@
         <!--<div class="floorsix" v-show="changeIsShow" :class="{'meng ': changeIsShow}" style="height: 0%">-->
         <div class="floorfive" style="height: 0% ">
           <a>
-            <div class="one_five" @click="clickForRoomInfo(621)" @mouseover=""></div>
+            <div class="one_five" @click="clickForRoomInfo(521)" @mouseover=""></div>
+          </a>
+          <a><div class="two_five" @click="clickForRoomInfo(525)"></div></a>
+          <a><div class="four_five" @click="clickForRoomInfo(529)"></div></a>
+          <a>
+            <div class="five_five" @click="clickForRoomInfo(535)"></div>
           </a>
           <a>
-            <div class="two_five" @click="clickForRoomInfo(625)"></div>
-          </a>
-          <a>
-            <div class="three_five" @click="clickForRoomInfo(628)"></div>
-          </a>
-          <a>
-            <div class="four_five" @click="clickForRoomInfo(630)"></div>
-          </a>
-          <a>
-            <div class="five_five" @click="clickForRoomInfo(635)"></div>
-          </a>
-
-          <a>
-            <div class="seven_five" @click="clickForRoomInfo(619)"></div>
-          </a>
-          <a>
-            <div class="eight_five" @click="clickForRoomInfo(612)"></div>
-          </a>
-          <a>
-            <div class="ten_five" @click="clickForRoomInfo(605)"></div>
-          </a>
-          <a>
-            <div class="eleven_five" @click="clickForRoomInfo(601)"></div>
+            <div class="ten_five" @click="clickForRoomInfo(505)"></div>
           </a>
         </div>
       </div>
@@ -107,6 +90,8 @@
   }
 
   .four_five {
+    position: absolute;
+    left: 50%
     width: 14%
     padding-bottom 13% //这个是宽度的百分比
     height 0px
@@ -115,11 +100,14 @@
   }
 
   .five_five {
-    width: 28%
-    padding-bottom 13% //这个是宽度的百分比
-    height 0px
-    background-color rgba(10, 100, 91, 0.51)
+    position: absolute;
+    top: 0%
+    left: 71%
+    width: 29%
+    padding-bottom: 14%
+    background-color rgba(30, 20, 91, 0.51)
     float left
+    height 0px
   }
 
   //下部分
