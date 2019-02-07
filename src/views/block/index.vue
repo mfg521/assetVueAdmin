@@ -73,9 +73,9 @@
       </el-table-column>
       <el-table-column align="center" label="Operator" width="250">
         <template scope="scope">
-          <el-button v-if="blockManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">编辑
+          <el-button v-if="blockManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">Edit
           </el-button>
-          <el-button v-if="blockManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">删除
+          <el-button v-if="blockManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">Delete
           </el-button>
         </template>
       </el-table-column>

@@ -1,36 +1,36 @@
 <template>
 <div class="app-container calendar-list-container">
   <div class="filter-container">
-    <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="姓名或账户" v-model="listQuery.name"> </el-input>
-    <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
-    <el-button class="filter-item"  v-if="userManager_btn_add"  style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
+    <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="name or account" v-model="listQuery.name"> </el-input>
+    <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">Search</el-button>
+    <el-button class="filter-item"  v-if="userManager_btn_add"  style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">Add</el-button>
   </div>
   <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row style="width: 100%">
-    <el-table-column align="center" label="序号" width="65"> <template scope="scope">
+    <el-table-column align="center" label="No" width="65"> <template scope="scope">
           <span>{{scope.row.id}}</span>
         </template> </el-table-column>
-    <el-table-column width="200" align="center" label="姓名"> <template scope="scope">
+      <el-table-column width="200" align="center" label="userName"> <template scope="scope">
         <span>{{scope.row.name}}</span>
       </template> </el-table-column>
-    <el-table-column width="110" align="center" label="账户"> <template scope="scope">
+    <el-table-column width="110" align="center" label="account"> <template scope="scope">
             <span>{{scope.row.username}}</span>
           </template> </el-table-column>
-    <el-table-column width="110" align="center" label="性别"> <template scope="scope">
+    <el-table-column width="110" align="center" label="genders"> <template scope="scope">
             <span>{{scope.row.sex}}</span>
           </template> </el-table-column>
-    <el-table-column width="300" align="center" label="备注"> <template scope="scope">
+    <el-table-column width="300" align="center" label="remarks"> <template scope="scope">
             <span>{{scope.row.description}}</span>
           </template> </el-table-column>
-    <el-table-column width="180" align="center" label="最后时间"> <template scope="scope">
+    <el-table-column width="180" align="center" label="final time"> <template scope="scope">
           <span>{{scope.row.updTime}}</span>
         </template> </el-table-column>
-    <el-table-column width="200" align="center" label="最后更新人"> <template scope="scope">
+    <el-table-column width="200" align="center" label="last reviser"> <template scope="scope">
             <span>{{scope.row.updName}}</span>
           </template> </el-table-column>
-    <el-table-column align="center" label="操作" width="150"> <template scope="scope">
-        <el-button v-if="userManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">编辑
+    <el-table-column align="center" label="opertion" width="150"> <template scope="scope">
+        <el-button v-if="userManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">Edit
         </el-button>
-        <el-button v-if="userManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">删除
+        <el-button v-if="userManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">Delete
         </el-button>
       </template> </el-table-column>
   </el-table>
@@ -39,29 +39,29 @@
   </div>
   <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
     <el-form :model="form" :rules="rules" ref="form" label-width="100px">
-      <el-form-item label="姓名" prop="name">
-        <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
+      <el-form-item label="userName" prop="name">
+        <el-input v-model="form.name" placeholder="Please input userName"></el-input>
       </el-form-item>
-      <el-form-item label="账户" prop="username">
-        <el-input v-if="dialogStatus == 'create'" v-model="form.username" placeholder="请输入账户"></el-input>
-        <el-input v-else v-model="form.username" placeholder="请输入账户" readonly></el-input>
+      <el-form-item label="account" prop="username">
+        <el-input v-if="dialogStatus == 'create'" v-model="form.username" placeholder="Please input account"></el-input>
+        <el-input v-else v-model="form.username" placeholder="Please input account" readonly></el-input>
       </el-form-item>
-      <el-form-item v-if="dialogStatus == 'create'" label="密码" placeholder="请输入密码" prop="password">
+      <el-form-item v-if="dialogStatus == 'create'" label="password" placeholder="Please input password" prop="password">
         <el-input type="password" v-model="form.password"></el-input>
       </el-form-item>
-      <el-form-item label="性别">
-        <el-select class="filter-item" v-model="form.sex" placeholder="请选择">
-          <el-option v-for="item in  sexOptions" :key="item" :label="item" :value="item"> </el-option>
+      <el-form-item label="genders">
+        <el-select class="filter-item" v-model="form.sex" placeholder="Please Select">
+          <el-option v-for="item in sexOptions" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="描述">
-        <el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" placeholder="请输入内容" v-model="form.description"> </el-input>
+      <el-form-item label="description">
+        <el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" placeholder="Please input contents" v-model="form.description"> </el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="cancel('form')">取 消</el-button>
-      <el-button v-if="dialogStatus=='create'" type="primary" @click="create('form')">确 定</el-button>
-      <el-button v-else type="primary" @click="update('form')">确 定</el-button>
+      <el-button @click="cancel('form')">Cancel</el-button>
+      <el-button v-if="dialogStatus=='create'" type="primary" @click="create('form')">Confirm</el-button>
+      <el-button v-else type="primary" @click="update('form')">Confirm</el-button>
     </div>
   </el-dialog>
 </div>
@@ -83,7 +83,7 @@ export default {
       form: {
         username: undefined,
         name: undefined,
-        sex: '男',
+        sex: 'male',
         password: undefined,
         description: undefined
       },
@@ -91,39 +91,39 @@ export default {
         name: [
           {
             required: true,
-            message: '请输入用户',
+            message: 'Please input userName',
             trigger: 'blur'
           },
           {
             min: 3,
             max: 20,
-            message: '长度在 3 到 20 个字符',
+            message: 'The length is between 5 and 20 characters',
             trigger: 'blur'
           }
         ],
         username: [
           {
             required: true,
-            message: '请输入账户',
+            message: 'Please input account',
             trigger: 'blur'
           },
           {
             min: 3,
             max: 20,
-            message: '长度在 3 到 20 个字符',
+            message: 'The length is between 5 and 20 characters',
             trigger: 'blur'
           }
         ],
         password: [
           {
             required: true,
-            message: '请输入密码',
+            message: 'Please input password',
             trigger: 'blur'
           },
           {
             min: 5,
             max: 20,
-            message: '长度在 5 到 20 个字符',
+            message: 'The length is between 5 and 20 characters',
             trigger: 'blur'
           }
         ]
@@ -136,15 +136,15 @@ export default {
         limit: 20,
         name: undefined
       },
-      sexOptions: ['男', '女'],
+      sexOptions: ['male', 'female'],
       dialogFormVisible: false,
       dialogStatus: '',
       userManager_btn_edit: false,
       userManager_btn_del: false,
       userManager_btn_add: false,
       textMap: {
-        update: '编辑',
-        create: '创建'
+        update: 'update',
+        create: 'create'
       },
       tableKey: 0
     }
@@ -263,7 +263,7 @@ export default {
       this.form = {
         username: undefined,
         name: undefined,
-        sex: '男',
+        sex: 'male',
         password: undefined,
         description: undefined
       };

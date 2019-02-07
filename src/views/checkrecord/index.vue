@@ -14,13 +14,13 @@
       </el-input>
 
       <!--搜索按钮-->
-      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
+      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">Search</el-button>
     </div>
 
     <!--列表-->
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row
               style="width: 100%">
-      <el-table-column align="center" label="序号" width="65">
+      <el-table-column align="center" label="No" width="65">
         <template scope="scope">
           <span>{{scope.row.id}}</span>
         </template>
@@ -64,9 +64,9 @@
           <span v-else="scope.row.isSolved===1">Yes</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作" width="200">
+      <el-table-column align="center" label="operation" width="200">
         <template scope="scope">
-          <el-button v-if="checkManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">解决
+          <el-button v-if="checkManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">Solved
           </el-button>
         </template>
       </el-table-column>
@@ -91,7 +91,7 @@
   } from 'src/api/asset/shencha/index';
   import {mapGetters} from 'vuex';
 
-  var placeholders = { "serialNumber": "请输入资产编号","submitPeople": "请输入提交人","assetType": "请输入类型","isSolved": "请输入isSolved",};
+  var placeholders = { "serialNumber": "Serial Number","submitPeople": "Submit People","assetType": "Asset Type","isSolved": "Is Solved"};
 
   export default {
     name: 'user',

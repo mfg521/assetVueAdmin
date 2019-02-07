@@ -21,3 +21,12 @@
     }
   }
 </script>
+
+<style>
+  .app-wrapper .sidebar-container[data-v-6bdc2997]{
+    width: 250px;
+  }
+  .app-wrapper .main-container[data-v-6bdc2997]{
+    margin-left: 250px;
+  }
+</style>

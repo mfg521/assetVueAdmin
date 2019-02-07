@@ -1,22 +1,22 @@
 <template>
 
 <el-menu class="navbar" mode="horizontal">
-  
+
   <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
   <levelbar></levelbar>
   <tabs-view></tabs-view>
   <error-log v-if="log.length>0" class="errLog-container" :logsList="log"></error-log>
-  <screenfull class='screenfull'></screenfull>
+ <!-- <screenfull class='screenfull'></screenfull>-->
   <el-dropdown class="avatar-container" trigger="click">
     <div class="avatar-wrapper"> <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'"> <i class="el-icon-caret-bottom"></i> </div>
     <el-dropdown-menu class="user-dropdown" slot="dropdown">
       <router-link class='inlineBlock' to="/">
-        <el-dropdown-item> 首页 </el-dropdown-item>
+        <el-dropdown-item style="text-align: center;font-size: 16px"> Home </el-dropdown-item>
       </router-link>
-      <a target='_blank' href="https://github.com/wxiaoqi/ace-admin/">
-        <el-dropdown-item> 项目地址 </el-dropdown-item>
-      </a>
-      <el-dropdown-item divided><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
+      <!--<a target='_blank' href="https://github.com/wxiaoqi/ace-admin/">-->
+        <!--<el-dropdown-item> 项目地址 </el-dropdown-item>-->
+      <!--</a>-->
+      <el-dropdown-item divided><span @click="logout" style="display:block;text-align: center;font-size: 16px">Logout</span></el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </el-menu>

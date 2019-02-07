@@ -1,26 +1,26 @@
 <template>
 <div class="login-container">
   <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px" class="card-box login-form">
-    <h3 class="title">系统登录</h3>
+    <h3 class="title">System Login</h3>
     <el-form-item prop="username">
       <span class="svg-container"><icon-svg icon-class="jiedianyoujian"></icon-svg></span>
-      <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="账户"></el-input>
+      <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username"></el-input>
     </el-form-item>
     <el-form-item prop="password">
       <span class="svg-container"><icon-svg icon-class="mima"></icon-svg></span>
-      <el-input name="password" type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on" placeholder="密码"></el-input>
+      <el-input name="password" type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on" placeholder="password"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
-        登录
+        Login
       </el-button>
     </el-form-item>
   </el-form>
 
-  <el-dialog title="第三方验证" :visible.sync="showDialog">
-    邮箱登录成功,请选择第三方验证
-    <social-sign></social-sign>
-  </el-dialog>
+  <!--<el-dialog title="第三方验证" :visible.sync="showDialog">-->
+    <!--邮箱登录成功,请选择第三方验证-->
+    <!--<social-sign></social-sign>-->
+  <!--</el-dialog>-->
 
 </div>
 </template>
@@ -36,7 +36,7 @@ export default {
   data() {
     const validatePass = (rule, value, callback) => {
       if (value.length < 5) {
-        callback(new Error('密码不能小于5位'));
+        callback(new Error('Password cannot be less than 5 digits '));
       } else {
         callback();
       }
@@ -49,13 +49,13 @@ export default {
       loginRules: {
         username: [{
           required: true,
-          message: '账户不能为空',
+            message: 'Username cannot be empty',
           trigger: 'blur'
         },
         {
           min: 3,
           max: 20,
-          message: '长度在 3 到 20 个字符',
+          message: 'The length is between 3 and 20 characters',
           trigger: 'blur'
         }],
         password: [{
@@ -75,7 +75,7 @@ export default {
           this.loading = true;
           this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {
             this.loading = false;
-            this.$router.push({
+              this.$router.push({
               path: '/'
             });
             // this.showDialog = true;

@@ -26,7 +26,7 @@
     <!--列表-->
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row
               style="width: 100%">
-      <el-table-column align="center" label="序号" width="65">
+      <el-table-column align="center" label="No" width="65">
         <template scope="scope">
           <span>{{scope.row.assetId}}</span>
         </template>
@@ -63,7 +63,7 @@
           <!--<span>{{scope.row.updName}}</span>-->
         <!--</template>-->
       <!--</el-table-column>-->
-      <el-table-column align="center" label="操作" width="300">
+      <el-table-column align="center" label="Operation" width="300">
         <template scope="scope">
           <el-button v-if="assetManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">edit
           </el-button>
@@ -93,7 +93,7 @@
         </el-form-item>
 
         <el-form-item label="computerModel" prop="computerModel">
-          <el-input v-model="form.computerModel" placeholder="请输入资产型号"></el-input>
+          <el-input v-model="form.computerModel" placeholder="please input computer Model"></el-input>
         </el-form-item>
         <el-form-item label="serialNumber" prop="serialNumber">
           <el-input v-if="dialogStatus == 'create'" v-model="form.serialNumber" placeholder="please input serialNumber"></el-input>
@@ -171,7 +171,7 @@
   } from 'src/api/asset/asset/index';
   import {mapGetters} from 'vuex';
 
-  var placeholders = {"assetType": "input assetClass","serialNumber": "input serialNumber", "computerModel": "input computerModel"};
+  var placeholders = {"assetType": "input assetClass","serialNumber": "input serialNumber", "computerModel": "input computerModel","taggerNumber":"input taggerNumber"};
   export default {
     name: 'user',
     data() {
@@ -242,8 +242,8 @@
         userManager_btn_del: false,
         userManager_btn_add: false,
         textMap: {
-          update: '编辑',
-          create: '创建'
+          update: 'Update ',
+          create: 'Create'
         },
         tableKey: 0,
 
@@ -325,17 +325,17 @@
 
       },
       handleDelete(row) {
-        this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+        this.$confirm('This data will be deleted.Do you want to continue?', 'reminder', {
+          confirmButtonText: 'Confirm',
+          cancelButtonText: 'Cancel',
           type: 'warning'
         })
           .then(() => {
             delObj(row.assetId)
               .then(() => {
                 this.$notify({
-                  title: '成功',
-                  message: '删除成功',
+                  title: 'Delete',
+                  message: 'Deleted successfully',
                   type: 'success',
                   duration: 2000
                 });
@@ -353,8 +353,8 @@
                 this.dialogFormVisible = false;
                 this.getList();
                 this.$notify({
-                  title: '成功',
-                  message: '创建成功',
+                  title: 'Created',
+                  message: 'Created successfully',
                   type: 'success',
                   duration: 2000
                 });
@@ -378,8 +378,8 @@
               this.dialogFormVisible = false;
               this.getList();
               this.$notify({
-                title: '成功',
-                message: '创建成功',
+                title: 'Update',
+                message: 'Updated successfully',
                 type: 'success',
                 duration: 2000
               });

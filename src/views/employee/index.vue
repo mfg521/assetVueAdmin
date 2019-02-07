@@ -5,7 +5,7 @@
       <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="employeeName"
                 v-model="listQuery.employeeName"></el-input>
       <!--搜索按钮-->
-      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">searcj</el-button>
+      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">search</el-button>
 
       <!--添加按钮-->
       <el-button class="filter-item" v-if="employeeManager_btn_add" style="margin-left: 10px;" @click="handleCreate"
@@ -83,7 +83,7 @@
 
     <div v-show="!listLoading" class="pagination-container">
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                     :current-page.sync="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit"
+                     :current-page.sync="listQuery.page" :page-sizes="[10,20,30,50]" :page-size="listQuery.limit"
                      layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>
     </div>
 
@@ -230,8 +230,8 @@
         employeeManager_btn_del: false,
         employeeManager_btn_add: false,
         textMap: {
-          update: '编辑',
-          create: '创建'
+          update: 'Edit ',
+          create: 'Create'
         },
         tableKey: 0,
         imageUrl: ''
@@ -293,17 +293,17 @@
       },
 
       handleDelete(row) {
-        this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+        this.$confirm('This data will be deleted.Do you want to continue?', 'reminder', {
+          confirmButtonText: 'Confirm',
+          cancelButtonText: 'Cancel',
           type: 'warning'
         })
           .then(() => {
             delObj(row.id)
               .then(() => {
                 this.$notify({
-                  title: '成功',
-                  message: '删除成功',
+                  title: 'Delete',
+                  message: 'Deleted successfully',
                   type: 'success',
                   duration: 2000
                 });
@@ -321,8 +321,8 @@
                 this.dialogFormVisible = false;
                 this.getList();
                 this.$notify({
-                  title: 'success',
-                  message: '创建成功',
+                  title: 'Created',
+                  message: 'Created successfully',
                   type: 'success',
                   duration: 2000
                 });
@@ -346,8 +346,8 @@
               this.dialogFormVisible = false;
               this.getList();
               this.$notify({
-                title: 'success',
-                message: '创建成功',
+                title: 'Update',
+                message: 'Updated successfully',
                 type: 'success',
                 duration: 2000
               });
