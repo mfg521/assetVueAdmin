@@ -187,10 +187,10 @@
               trigger: 'blur'
             }
           ],
-          username: [
+          emailAddress: [
             {
               required: true,
-              message: '请输入账户',
+              message: 'please input emailAddress',
               trigger: 'blur'
             },
             {
@@ -299,7 +299,7 @@
           type: 'warning'
         })
           .then(() => {
-            delObj(row.id)
+            delObj(row.employeeId)
               .then(() => {
                 this.$notify({
                   title: 'Delete',

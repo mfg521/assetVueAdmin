@@ -92,7 +92,7 @@
 	        comment_count: 102400,
 	        latest_article: [],
 	        month_article_count: 28,
-	        pageviews_count: 1024
+	        pageviews_count: 1025
       }
     }
   },
