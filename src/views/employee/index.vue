@@ -73,8 +73,7 @@
         <template scope="scope">
           <el-button v-if="employeeManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">edit
           </el-button>
-          <el-button size="small" type="success" @click="handleRecord(scope.row)">record
-          </el-button>
+          <!--<el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>-->
           <el-button v-if="employeeManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">delete
           </el-button>
         </template>

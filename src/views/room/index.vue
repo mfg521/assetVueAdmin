@@ -213,16 +213,19 @@
 
           //说明是修改
         } else {
-          console.log(employee)
           var xindex = event.srcElement.parentElement.parentElement.classList[0]
           var yindex = ''
-          if (event.srcElement.parentElement.parentElement.classList.length === 3) {
+          var blockId = ''
+          if (event.srcElement.parentElement.parentElement.classList.length === 4) {
             yindex = event.srcElement.parentElement.parentElement.classList[2]
+            blockId= event.srcElement.parentElement.parentElement.classList[3]
           } else {
             yindex = xindex
+            blockId= event.srcElement.parentElement.parentElement.classList[2]
           }
           this.changeEmployeeForm.xindex = xindex
           this.changeEmployeeForm.yindex = yindex
+          this.changeEmployeeForm.blockId = blockId
         }
       },
 

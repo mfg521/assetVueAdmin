@@ -20,6 +20,19 @@
           <span>{{scope.row.employeeId}}</span>
         </template>
       </el-table-column>
+
+      <el-table-column width="200" align="center" label="employeeName">
+        <template scope="scope">
+          <span>{{scope.row.employeeName}}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="100" align="center" label="roomNum">
+        <template scope="scope">
+          <span>{{scope.row.roomNum}}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column width="200" align="center" label="serialNumber">
         <template scope="scope">
           <span>{{scope.row.serialNumber}}</span>
