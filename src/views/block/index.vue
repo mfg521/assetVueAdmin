@@ -2,8 +2,8 @@
   <div class="app-container calendar-list-container">
     <div class="filter-container">
       <!--搜索框-->
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="employeeName"
-                v-model="listQuery.employeeName"></el-input>
+      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="roomNum"
+                v-model="listQuery.roomNum"></el-input>
       <!--搜索按钮-->
       <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">search</el-button>
 
@@ -207,7 +207,7 @@
         listQuery: {
           page: 1,
           limit: 20,
-          employeeName: undefined
+          roomNum: undefined
         },
         sexOptions: ['one', 'two'],
         employeeClassOptions: ['北京直招', '人力直招','GES','业务外包','项目伙伴'],
