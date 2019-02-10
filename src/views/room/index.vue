@@ -38,29 +38,29 @@
               <img
                 :src="'http://172.30.1.81:8765/api/asset/employee/employeeUrl?employeeUrl='+CurentEmployee.employeeUrl"
                 :onerror="defaultImg" style="width: 35%; height: 35%; border-radius: 50%;">
-              <p style="margin-bottom: 2%;">
+              <p style="margin-bottom: 5%; margin-top: 5%;font-size: 16px" >
                 <span v-if="CurentEmployee.employeeName!==undefined" style="font-weight: bold;"
                       @click="employeeDialog.dialogFormVisible = true">name:{{CurentEmployee.employeeName}}<el-button
-                  type="info">Change Emoloyee</el-button></span>
+                  type="info" style="margin-left:2%">Change Emoloyee</el-button></span>
 
-                <span v-else @click="employeeDialog.dialogFormVisible = true">No Employee<el-button
-                  type="info">Add new</el-button></span>
+                <span v-else @click="employeeDialog.dialogFormVisible = true">No Employee</span><el-button
+                type="info" style="margin-left:2%">Add new</el-button>
 
               </p>
-              <div style="text-align: left;">
-                <p style="margin: 0"><span style="margin-right: 5%; font-weight: bold;">department</span>{{CurentEmployee.department}}
+              <div style="text-align: left; font-size: 16px;font-weight: bold;">
+                <p style="margin: 0"><span style="margin-right: 2%; font-weight: bold;font-size: 16px">department:</span>{{CurentEmployee.department}}
                 </p>
-                <p style="margin: 0"><span style="margin-right: 5%; font-weight: bold;">email_address</span>{{CurentEmployee.emailAddress}}
+                <p style="margin: 0"><span style="margin-right: 2%; font-weight: bold;font-size: 16px">email_address:</span>{{CurentEmployee.emailAddress}}
                 </p>
-                <p style="margin: 0"><span style="margin-right: 5%; font-weight: bold;">internal_no</span>{{CurentEmployee.internalNo}}
+                <p style="margin: 0"><span style="margin-right: 2%; font-weight: bold;font-size: 16px">internal_no:</span>{{CurentEmployee.internalNo}}
                 </p>
-                <p style="margin: 0"><span style="margin-right: 5%; font-weight: bold;">dubai_no</span>{{CurentEmployee.dubaiNo}}
+                <p style="margin: 0"><span style="margin-right: 2%; font-weight: bold;font-size: 16px">dubai_no:</span>{{CurentEmployee.dubaiNo}}
                 </p>
                 <!--<p style="margin: 0"><span-->
                 <!--style="margin-right: 5%; margin-top: 5%;font-weight: bold;">Company Details</span></p>-->
 
-                <hr style="color: black"/>
-                <p style="margin: 0"><span style="margin-right:5%; font-weight: bold;">Asset Info:</span></p>
+                <hr style="color: black;margin-bottom: 1%;margin-top: 1%"/>
+                <p style="margin: 0"><span style="margin-right:5%; font-weight: bold;font-size: 16px">Asset Info:</span></p>
               </div>
               <div>
                 <a class="guide_item"><i class="iconfont icon-zhuji" @click="clickForAssetInfo('cpu')"></i></a>
@@ -79,9 +79,9 @@
               <div style="text-align: left; width: 80%;float: left ">
                 <span style="font-weight: bold; clear: both;font-size: 15px">Record Details:</span>
                 <hr style="color: black;margin-bottom: 5px;margin-top: 5px"/>
-                <p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;">Serial Number</span>{{CurentAseet.serialNumber}}
+                <p style="margin: 0"><span style="margin-right: 10%; font-weight: bold; font-size: 16px">Serial Number</span>{{CurentAseet.serialNumber}}
                 </p>
-                <p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;">BorrowedDate</span>{{CurentAseet.borrowedDate}}
+                <p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;font-size: 16px  ">BorrowedDate</span>{{CurentAseet.borrowedDate}}
                 </p>
                 <!--<p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;">beijing Code</span>{{CurentAseet.beijingCode}}</p>-->
                 <!--<p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;">FN Code</span>{{CurentAseet.financeCode}}</p>-->
@@ -98,12 +98,12 @@
               </div>
             </div>
             <div v-else>
-              <div>
+              <div style="font-size: 16px">
                 <span v-if="this.assetType==='cpu'">NO CPU ASSET</span>
                 <span v-else-if="this.assetType==='mon'">No MONITER ASSET</span>
                 <span v-else-if="this.assetType==='laptop'">No LAPTOP ASSET</span>
                 <span v-else="this.assetType==='phone'">No PHONE ASSET</span>
-                <span @click="dialog.dialogFormVisible = true"><el-button type="info">Add new</el-button></span>
+                <span @click="dialog.dialogFormVisible = true"><el-button type="info" style="margin-left:2%">Add new</el-button></span>
               </div>
             </div>
           </div>
@@ -121,8 +121,8 @@
 
         </el-form>
         <div slot="footer" class="dialog-footer">
-          <el-button @click="dialog.dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="save">确 定</el-button>
+          <el-button @click="dialog.dialogFormVisible = false">Cancel</el-button>
+          <el-button type="primary" @click="save">Confirm</el-button>
         </div>
       </el-dialog>
 
@@ -134,14 +134,11 @@
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-          <el-button @click="employeeDialog.dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="saveEmployee">确 定</el-button>
+          <el-button @click="employeeDialog.dialogFormVisible = false">Cancel</el-button>
+          <el-button type="primary" @click="saveEmployee">Confirm</el-button>
         </div>
       </el-dialog>
-
     </div>
-
-
   </div>
 </template>
 
@@ -157,13 +154,13 @@
       return {
         employeeDialog: {
           dialogEdit: false,
-          dialogTitle: '修改员工信息',
+          dialogTitle: 'Modify employee information',
           dialogFormVisible: false
         },
 
         dialog: {
           dialogEdit: false,
-          dialogTitle: '修改资产信息',
+          dialogTitle: 'Modify asset information',
           dialogFormVisible: false
         },
 

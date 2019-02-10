@@ -2,9 +2,9 @@
 <el-row>
   <el-col :span="24">
     <el-button-group>
-      <el-button type="primary" v-if="groupManager_btn_add" icon="plus" @click="handlerAdd">添加</el-button>
-      <el-button type="primary" v-if="groupManager_btn_edit" icon="edit" @click="handlerEdit">编辑</el-button>
-      <el-button type="primary" v-if="groupManager_btn_del" icon="delete" @click="handleDelete">删除</el-button>
+      <el-button type="primary" v-if="groupManager_btn_add" icon="plus" @click="handlerAdd">Add</el-button>
+      <el-button type="primary" v-if="groupManager_btn_edit" icon="edit" @click="handlerEdit">Edit</el-button>
+      <el-button type="primary" v-if="groupManager_btn_del" icon="delete" @click="handleDelete">Delete</el-button>
       <el-button type="primary" v-if="groupManager_btn_resourceManager" @click="handlerAuthority">
         <icon-svg icon-class="quanxian1"></icon-svg>权限分配</el-button>
       <el-button type="primary" v-if="groupManager_btn_userManager" @click="handlerUser">
@@ -12,27 +12,27 @@
     </el-button-group>
   </el-col>
   <el-col :span="8" style='margin-top:15px;'>
-    <el-input placeholder="输入关键字进行过滤" v-model="filterText"> </el-input>
+    <el-input placeholder="Please input keywords for filtering" v-model="filterText"> </el-input>
     <el-tree class="filter-tree" :data="treeData" node-key="id" highlight-current :props="defaultProps" :filter-node-method="filterNode" ref="groupTree" @node-click="getNodeData" default-expand-all> </el-tree>
   </el-col>
   <el-col :span="16" style='margin-top:15px;'>
     <el-form :label-position="labelPosition" label-width="80px" :model="form" ref="form">
-      <el-form-item label="名称">
+      <el-form-item label="name">
         <el-input v-model="form.name" :disabled="formEdit"></el-input>
       </el-form-item>
-      <el-form-item label="编码">
+      <el-form-item label="code(编码)">
         <el-input v-model="form.code" :disabled="formEdit"></el-input>
       </el-form-item>
-      <el-form-item label="描述">
+      <el-form-item label="description">
         <el-input v-model="form.description" :disabled="formEdit"></el-input>
       </el-form-item>
       <el-form-item v-if="formStatus == 'update'">
-        <el-button type="primary" v-if="groupManager_btn_edit" @click="update">更新</el-button>
-        <el-button @click="onCancel">取消</el-button>
+        <el-button type="primary" v-if="groupManager_btn_edit" @click="update">Update</el-button>
+        <el-button @click="onCancel">Cancel</el-button>
       </el-form-item>
       <el-form-item v-if="formStatus == 'create'">
-        <el-button type="primary" v-if="groupManager_btn_add" @click="create">保存</el-button>
-        <el-button @click="onCancel">取消</el-button>
+        <el-button type="primary" v-if="groupManager_btn_add" @click="create">Save</el-button>
+        <el-button @click="onCancel">Cancel</el-button>
       </el-form-item>
     </el-form>
   </el-col>
@@ -150,9 +150,9 @@ export default {
       this.formStatus = 'create';
     },
     handleDelete() {
-      this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('This data will be permanently deleted, Are you sure to continue', 'reminder', {
+        confirmButtonText: 'confirm',
+        cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         delObj(this.currentId).then(() => {
@@ -160,8 +160,8 @@ export default {
           this.resetForm();
           this.onCancel();
           this.$notify({
-            title: '成功',
-            message: '删除成功',
+            title: 'Delete',
+            message: 'Successful Delete',
             type: 'success',
             duration: 2000
           });
@@ -172,8 +172,8 @@ export default {
       putObj(this.form.id, this.form).then(() => {
         this.getList();
         this.$notify({
-          title: '成功',
-          message: '创建成功',
+          title: 'Update',
+          message: 'Successful Update',
           type: 'success',
           duration: 2000
         });
@@ -183,8 +183,8 @@ export default {
       addObj(this.form).then(() => {
         this.getList();
         this.$notify({
-          title: '成功',
-          message: '创建成功',
+          title: 'Create',
+          message: 'Successful Created',
           type: 'success',
           duration: 2000
         });

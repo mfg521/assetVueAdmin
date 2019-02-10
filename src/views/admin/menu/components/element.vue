@@ -1,9 +1,9 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="资源名称" v-model="listQuery.name"> </el-input>
-      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
-      <el-button class="filter-item" v-if="menuManager_btn_element_add" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
+      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="resource name" v-model="listQuery.name"> </el-input>
+      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">Search</el-button>
+      <el-button class="filter-item" v-if="menuManager_btn_element_add" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">Add</el-button>
     </div>
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="id" width="65">
@@ -12,46 +12,46 @@
 </template>
 
 </el-table-column>
-    <el-table-column width="200px" align="center" label="资源编码"><template scope="scope">
+    <el-table-column width="200px" align="center" label="resourceCode"><template scope="scope">
   <span>
     {{scope.row.code}}</span>
 </template>
 
 </el-table-column>
-    <el-table-column width="200px" align="center" label="资源类型"><template scope="scope">
+    <el-table-column width="200px" align="center" label="resourceType"><template scope="scope">
   <span>
     {{scope.row.type}}</span>
 </template>
 
 </el-table-column>
-    <el-table-column width="200px" align="center" label="资源名称"><template scope="scope">
+    <el-table-column width="200px" align="center" label="resourceName"><template scope="scope">
   <span>
     {{scope.row.name}}</span>
 </template>
 
 </el-table-column>
-    <el-table-column width="200px" align="center" label="资源地址"><template scope="scope">
+    <el-table-column width="200px" align="center" label="resourceAddress"><template scope="scope">
   <span>
     {{scope.row.uri}}</span>
 </template>
 </el-table-column>
-    <el-table-column width="200px" align="center" label="资源请求类型"><template scope="scope">
+    <el-table-column width="200px" align="center" label="requestType"><template scope="scope">
   <span>
     {{scope.row.method}}</span>
 </template>
 
 </el-table-column>
-    <el-table-column width="200px" align="center" label="描述"><template scope="scope">
+    <el-table-column width="200px" align="center" label="description"><template scope="scope">
   <span>
     {{scope.row.description}}</span>
 </template>
 
 </el-table-column>
-    <el-table-column fixed="right" align="center" label="操作" width="150"><template scope="scope">
+    <el-table-column fixed="right" align="center" label="operation" width="150"><template scope="scope">
   <el-button v-if="menuManager_btn_element_edit" size="small" type="success" @click="handleUpdate(scope.row)">
-    编辑
+    Edit
   </el-button>
-  <el-button v-if="menuManager_btn_element_del" size="small" type="danger" @click="handleDelete(scope.row)">删除
+  <el-button v-if="menuManager_btn_element_del" size="small" type="danger" @click="handleDelete(scope.row)">Delete
   </el-button>
 </template>
 
@@ -61,31 +61,31 @@
     <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total"> </el-pagination>
   </div>
   <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-    <el-form :model="form" :rules="rules" ref="form" label-width="100px">
-      <el-form-item label="资源编码" prop="code">
-        <el-input v-model="form.code" placeholder="请输入资源编码"></el-input>
+    <el-form :model="form" :rules="rules" ref="form" label-width="140px">
+      <el-form-item label="resourceCode" prop="code">
+        <el-input v-model="form.code" placeholder="Please input resource code"></el-input>
       </el-form-item>
-      <el-form-item label="资源类型" prop="type">
-         <el-select class="filter-item" v-model="form.type" placeholder="请输入资源类型">
+      <el-form-item label="resourceType" prop="type">
+         <el-select class="filter-item" v-model="form.type" placeholder="resource type">
           <el-option v-for="item in  typeOptions" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="资源名称" prop="name">
-        <el-input v-model="form.name" placeholder="请输入资源名称"></el-input>
+      <el-form-item label="resourceName" prop="name">
+        <el-input v-model="form.name" placeholder="Please input resource name"></el-input>
       </el-form-item>
-      <el-form-item label="资源地址" prop="uri">
-        <el-input v-model="form.uri" placeholder="请输入资源地址"></el-input>
+      <el-form-item label="resourceAddress" prop="uri">
+        <el-input v-model="form.uri" placeholder="Please input resource address"></el-input>
       </el-form-item>
-      <el-form-item label="资源请求类型" prop="method">
-        <el-select class="filter-item" v-model="form.method" placeholder="请输入资源请求类型">
+      <el-form-item label="requestType" prop="method">
+        <el-select class="filter-item" v-model="form.method" placeholder="resource request type">
           <el-option v-for="item in  methodOptions" :key="item" :label="item" :value="item"> </el-option>
         </el-select>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="cancel('form')">取 消</el-button>
-      <el-button v-if="dialogStatus=='create'" type="primary" @click="create('form')">确 定</el-button>
-      <el-button v-else type="primary" @click="update('form')">确 定</el-button>
+      <el-button @click="cancel('form')">Cancel</el-button>
+      <el-button v-if="dialogStatus=='create'" type="primary" @click="create('form')">Create</el-button>
+      <el-button v-else type="primary" @click="update('form')">Update</el-button>
     </div>
   </el-dialog>
 </div>
@@ -123,31 +123,31 @@ export default {
       rules: {
         code: [{
           required: true,
-          message: '请输入资源编码',
+          message: 'Please input resource code',
           trigger: 'blur'
         }
         ],
         type: [{
           required: true,
-          message: '请输入资源类型',
+          message: 'Please input resource type',
           trigger: 'blur'
         },
         {
           min: 2,
           max: 20,
-          message: '长度在 2 到 20 个字符',
+          message: 'The length is between 2 and 20 characters',
           trigger: 'blur'
         }
         ],
         name: [{
           required: true,
-          message: '请输入资源名称',
+          message: 'Please input resource name',
           trigger: 'blur'
         },
         {
           min: 2,
           max: 20,
-          message: '长度在 2 到 20 个字符',
+          message: 'The length is between 2 and 20 characters',
           trigger: 'blur'
         }
         ],
@@ -157,33 +157,33 @@ export default {
           trigger: 'blur'
         },
         {
-          min: 3,
+          min: 2,
           max: 20,
-          message: '长度在 3 到 20 个字符',
+          message: 'The length is between 2 and 20 characters',
           trigger: 'blur'
         }
         ],
         method: [{
           required: true,
-          message: '请输入资源请求类型',
+          message: 'Please input resource request type',
           trigger: 'blur'
         },
         {
-          min: 3,
+          min: 2,
           max: 20,
-          message: '长度在 3 到 20 个字符',
+          message: 'The length is between 2 and 20 characters',
           trigger: 'blur'
         }
         ],
         description: [{
           required: true,
-          message: '请输入',
+          message: 'Please input',
           trigger: 'blur'
         },
         {
-          min: 3,
+          min: 2,
           max: 20,
-          message: '长度在 3 到 20 个字符',
+          message: 'The length is between 2 and 20 characters',
           trigger: 'blur'
         }
         ]
@@ -204,8 +204,8 @@ export default {
       menuManager_btn_element_del: false,
       menuId: -1,
       textMap: {
-        update: '编辑',
-        create: '创建'
+        update: 'Edit',
+        create: 'Create'
       },
       tableKey: 0
     }
@@ -255,15 +255,15 @@ export default {
       });
     },
     handleDelete(row) {
-      this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('This data will be permanently deleted, Are you sure to continue', 'reminder', {
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         delObj(row.id).then(() => {
           this.$notify({
-            title: '成功',
-            message: '删除成功',
+            title: 'Delete',
+            message: 'Successful delete',
             type: 'success',
             duration: 2000
           });
@@ -281,8 +281,8 @@ export default {
             this.dialogFormVisible = false;
             this.getList();
             this.$notify({
-              title: '成功',
-              message: '创建成功',
+              title: 'Create',
+              message: 'Successful Create',
               type: 'success',
               duration: 2000
             });
@@ -308,8 +308,8 @@ export default {
             this.dialogFormVisible = false;
             this.getList();
             this.$notify({
-              title: '成功',
-              message: '创建成功',
+              title: 'Update',
+              message: 'Successful update',
               type: 'success',
               duration: 2000
             });
