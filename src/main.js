@@ -52,7 +52,7 @@ router.beforeEach((to, from, next) => {
 
     const url = decodeURI(location)
     if (getToken()) { // 判断是否有token
-      if (to.path === '/login' ) {
+      if (to.path === '/login') {
         next({path: '/'});
       } else {
         if (store.getters.menus === undefined) { // 判断当前用户是否已拉取完user_info信息
@@ -63,10 +63,10 @@ router.beforeEach((to, from, next) => {
             }
             store.dispatch('GenerateRoutes', menus).then(() => { // 生成可访问的路由表
               router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-              if(url.indexOf('token=') !== -1){
+              if (url.indexOf('token=') !== -1) {
                 const nextPath = url.split('?token=')[0].split('#')[1]
                 next({path: nextPath})
-              }else {
+              } else {
                 next(); // hack方法 确保addRoutes已完成
               }
             })
@@ -77,9 +77,9 @@ router.beforeEach((to, from, next) => {
           })
         } else {
           //错误所在，这一段代码永远不会执行
-          if(url.indexOf('token=') === -1){
+          if (url.indexOf('token=') === -1) {
             next()
-          }else {
+          } else {
             var nextPathss = url.split('?token=')[0].split('#')[1]
             next()
           }

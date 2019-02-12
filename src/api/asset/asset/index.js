@@ -44,3 +44,11 @@ export function  getQrCode(id) {
     method: 'post',
   })
 }
+
+export function getAssetDetails(name) {
+  return fetch({
+    url: '/api/asset/asset/getAssetDetails',
+    method: 'post',
+    data: name
+  })
+}

@@ -8,7 +8,8 @@
   <error-log v-if="log.length>0" class="errLog-container" :logsList="log"></error-log>
  <!-- <screenfull class='screenfull'></screenfull>-->
   <el-dropdown class="avatar-container" trigger="click">
-    <div class="avatar-wrapper"> <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'"> <i class="el-icon-caret-bottom"></i> </div>
+    <!--<div class="avatar-wrapper"> <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'"> <i class="el-icon-caret-bottom"></i> </div>-->
+    <div class="avatar-wrapper"> <img class="user-avatar" src="../../../static/images/default.png"> <i class="el-icon-caret-bottom"></i> </div>
     <el-dropdown-menu class="user-dropdown" slot="dropdown">
       <router-link class='inlineBlock' to="/">
         <el-dropdown-item style="text-align: center;font-size: 16px"> Home </el-dropdown-item>
