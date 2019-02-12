@@ -42,6 +42,11 @@ export const constantRouterMap = [{
     hidden: true
   },
   {
+    path: '/emplpyeeManager',
+    component: _import('employeeSingle/index'),
+    hidden: true
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
