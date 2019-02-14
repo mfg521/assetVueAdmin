@@ -43,8 +43,8 @@
                       @click="employeeDialog.dialogFormVisible = true">name:{{CurentEmployee.employeeName}}<el-button
                   type="info" style="margin-left:2%">Change Emoloyee</el-button></span>
 
-                <span v-else @click="employeeDialog.dialogFormVisible = true">No Employee</span><el-button
-                type="info" style="margin-left:2%">Add new</el-button>
+                <span v-else @click="employeeDialog.dialogFormVisible = true">No Employee<el-button
+                type="info" style="margin-left:2%">Add new</el-button></span>
 
               </p>
               <div style="text-align: left; font-size: 16px;font-weight: bold;">
@@ -232,7 +232,8 @@
         this.CurentAseet = ''
         this.assetType = assetType;
         const employeeUuid = this.CurentEmployee.employeeUuid
-        const asset = await getAssetInfo({employeeUuid, assetType});
+        const emailAddress=this.CurentEmployee.emailAddress
+        const asset = await getAssetInfo({emailAddress,employeeUuid, assetType});
         if (asset.length > 0) {
           this.CurentAseet = asset[0]
           console.log(this.CurentAseet)
@@ -244,10 +245,11 @@
         const result = confirm("confirm to Remove Asset?")
         console.log(result)
         if (result) {
+          const emailAddress=this.CurentEmployee.emailAddress
           const employeeUuid = this.CurentEmployee.employeeUuid
           const serialNumber = this.CurentAseet.serialNumber
           console.log(serialNumber)
-          const result = await returnAsset({employeeUuid, serialNumber});
+          const result = await returnAsset({emailAddress,employeeUuid, serialNumber});
           console.log(result)
           if (result.code === 0) {
             this.CurentAseet = ''

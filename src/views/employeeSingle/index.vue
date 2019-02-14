@@ -80,11 +80,11 @@
       <!--</el-table-column>-->
     </el-table>
 
-    <div v-show="!listLoading" class="pagination-container">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                     :current-page.sync="listQuery.page" :page-sizes="[10,20,30,50]" :page-size="listQuery.limit"
-                     layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>
-    </div>
+    <!--<div v-show="!listLoading" class="pagination-container">-->
+      <!--<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"-->
+                     <!--:current-page.sync="listQuery.page" :page-sizes="[10,20,30,50]" :page-size="listQuery.limit"-->
+                     <!--layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>-->
+    <!--</div>-->
 
     <!--创建员工dialog-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
@@ -164,7 +164,7 @@
           photo: undefined,
           employeeName: undefined,
           department: 'one',
-          employeeClass: '北京直招',
+          employeeClass: 'BJ_DG_ZZ',
           emailAddress: undefined,
           internalNo: undefined,
           beijingNo: undefined,
@@ -218,11 +218,11 @@
         listLoading: true,
         listQuery: {
           page: 1,
-          limit: 20,
+          limit: 500,
           employeeName: undefined
         },
         sexOptions: ['one', 'two'],
-        employeeClassOptions: ['beijing recruitment', 'Hr recruitment','GES','outsourcing','project partners'],
+        employeeClassOptions: ['BJ_DG_ZZ', 'BJ_MISSION','THRID-PARTY','GES'],
         dialogFormVisible: false,
         dialogStatus: '',
         employeeManager_btn_edit: false,

@@ -164,7 +164,7 @@
           photo: undefined,
           employeeName: undefined,
           department: 'one',
-          employeeClass: '北京直招',
+          employeeClass: 'BJ_DG_ZZ',
           emailAddress: undefined,
           internalNo: undefined,
           beijingNo: undefined,
@@ -222,7 +222,7 @@
           employeeName: undefined
         },
         sexOptions: ['one', 'two'],
-        employeeClassOptions: ['beijing recruitment', 'Hr recruitment','GES','outsourcing','project partners'],
+        employeeClassOptions: ['BJ_DG_ZZ', 'BJ_MISSION','GES','THRID-PARTY'],
         dialogFormVisible: false,
         dialogStatus: '',
         employeeManager_btn_edit: false,
