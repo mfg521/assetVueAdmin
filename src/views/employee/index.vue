@@ -11,6 +11,8 @@
       <el-button class="filter-item" v-if="employeeManager_btn_add" style="margin-left: 10px;" @click="handleCreate"
                  type="primary" icon="edit">add
       </el-button>
+
+      <el-button class="filter-item"  style="margin-left: 10px;" type="primary" ><a href="http://172.30.1.81:8763/download/contact">下载</a></el-button>
     </div>
 
     <!--列表-->
@@ -387,7 +389,25 @@
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
         return isJPG && isLt2M;
-      }
+      },
+      download: function(){
+        axios({
+          method: "get",
+          url: "http://172.30.1.81:8763/api/asset/download/contact",
+          responseType: "arraybuffer"
+        })
+          .then(
+            function(response) {
+              let filename = "poiImport.xlsx";
+              this.fileDownload(response.data, filename);
+            }.bind(this)
+          )
+          .catch(
+            function(error) {
+              alert("网络请求出错");
+            }.bind(this)
+          );
+      },
     }
   }
 </script>
