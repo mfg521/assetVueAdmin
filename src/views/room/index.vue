@@ -64,7 +64,7 @@
               </div>
               <div>
                 <a class="guide_item"><i class="iconfont icon-zhuji" @click="clickForAssetInfo('cpu')"></i></a>
-                <a class="guide_item"><i class="iconfont icon-computer" @click="clickForAssetInfo('mon')"></i></a>
+                <a class="guide_item"><i class="iconfont icon-computer" @click="clickForAssetInfo('monitor')"></i></a>
                 <a class="guide_item"><i class="iconfont icon-laptop" @click="clickForAssetInfo('laptop')"></i></a>
                 <a class="guide_item"><i class="iconfont icon-telephone2" @click="clickForAssetInfo('phone')"></i></a>
               </div>
@@ -100,7 +100,7 @@
             <div v-else>
               <div style="font-size: 16px">
                 <span v-if="this.assetType==='cpu'">NO CPU ASSET</span>
-                <span v-else-if="this.assetType==='mon'">No MONITER ASSET</span>
+                <span v-else-if="this.assetType==='monitor'">No MONITOR ASSET</span>
                 <span v-else-if="this.assetType==='laptop'">No LAPTOP ASSET</span>
                 <span v-else="this.assetType==='phone'">No PHONE ASSET</span>
                 <span @click="dialog.dialogFormVisible = true"><el-button type="info" style="margin-left:2%">Add new</el-button></span>
