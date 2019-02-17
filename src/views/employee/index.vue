@@ -136,6 +136,11 @@
           <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo"></el-input>
           <el-input v-else v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo" ></el-input>
         </el-form-item>
+
+        <el-form-item label="priority" prop="priority">
+          <el-input v-if="dialogStatus == 'create'" v-model="form.priority" placeholder="please input priority"></el-input>
+          <el-input v-else v-model="form.priority" placeholder="please input priority" ></el-input>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="cancel('form')">cancel</el-button>
@@ -164,8 +169,9 @@
       return {
         form: {
           photo: undefined,
+          priority: undefined,
           employeeName: undefined,
-          department: 'one',
+          department: 'Top Management',
           employeeClass: 'BJ_DG_ZZ',
           emailAddress: undefined,
           internalNo: undefined,
@@ -224,7 +230,8 @@
           employeeClass: 'BJ_DG_ZZ',
           employeeName: undefined
         },
-        sexOptions: ['one', 'two'],
+        sexOptions: ['Top Management', 'Administration','Human Resource','Finance',
+          'Business Development','Project Execution ','Project Control','Quality & Standards','Engineering Department'],
         // employeeClassOptions: ['BJ_DG_ZZ', 'BJ_MISSION','GES','THRID-PARTY'],
         dialogFormVisible: false,
         dialogStatus: '',
@@ -363,8 +370,7 @@
         this.form = {
           photo: undefined,
           employeeName: undefined,
-          department: 'one',
-          // employeeClass: 'beijing recruitment',
+          department: 'Top Management',
           emailAddress: undefined,
           internalNo: undefined,
           beijingNo: undefined,
@@ -380,12 +386,12 @@
         console.log(this.form.employeeUrl)
       },
       beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/png';
+        // const isJPG = file.type === 'image/png';
         const isLt2M = file.size / 1024 / 1024 < 2;
 
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 png 格式!');
-        }
+        // if (!isJPG) {
+        //   this.$message.error('上传头像图片只能是 png 格式!');
+        // }
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
