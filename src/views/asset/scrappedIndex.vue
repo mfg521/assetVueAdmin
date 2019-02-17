@@ -21,8 +21,7 @@
                  type="primary" icon="edit">add
       </el-button>
 
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary"><a
-        href="http://172.30.1.81:8763/download/contact">下载</a></el-button>
+      <el-button class="filter-item"  style="margin-left: 10px;" type="primary" ><a href="http://172.30.1.81:8763/download/contact">下载</a></el-button>
 
     </div>
 
@@ -80,9 +79,9 @@
         </template>
       </el-table-column>
       <!--<el-table-column width="100" align="center" label="最后更新人">-->
-      <!--<template scope="scope">-->
-      <!--<span>{{scope.row.updName}}</span>-->
-      <!--</template>-->
+        <!--<template scope="scope">-->
+          <!--<span>{{scope.row.updName}}</span>-->
+        <!--</template>-->
       <!--</el-table-column>-->
       <el-table-column align="center" label="Operation" width="300">
         <template scope="scope">
@@ -117,51 +116,30 @@
           <el-input v-model="form.computerModel" placeholder="please input computer Model"></el-input>
         </el-form-item>
         <el-form-item label="serialNumber" prop="serialNumber">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.serialNumber"
-                    placeholder="please input serialNumber"></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.serialNumber" placeholder="please input serialNumber"></el-input>
           <el-input v-else v-model="form.serialNumber" placeholder="serialNumber"></el-input>
         </el-form-item>
         <el-form-item label="taggedNumber" prop="taggedNumber">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.taggerNumber"
-                    placeholder="please input taggerNumber"></el-input>
-          <el-input v-else v-model="form.taggerNumber" placeholder="taggerNumber"></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.taggerNumber" placeholder="please input taggerNumber"></el-input>
+          <el-input v-else v-model="form.taggerNumber" placeholder="taggerNumber" ></el-input>
         </el-form-item>
         <el-form-item label="financeCode" prop="financeCode">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.financeCode"
-                    placeholder="please input financeCode"></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.financeCode" placeholder="please input financeCode"></el-input>
           <el-input v-else v-model="form.financeCode" placeholder="financeCode"></el-input>
         </el-form-item>
         <el-form-item label="beijingCode" prop="beijingCode">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.beijingCode"
-                    placeholder="please input beijingCode"></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.beijingCode" placeholder="please input beijingCode"></el-input>
           <el-input v-else v-model="form.beijingCode" placeholder="beijingCode"></el-input>
         </el-form-item>
-
-
-        <!--<el-form-item label="assetPeople" prop="assetPeople">-->
-          <!--<el-input v-if="dialogStatus == 'create'" v-model="form.assetPeople"-->
-                    <!--placeholder="please input assetPeople"></el-input>-->
-          <!--<el-input v-else v-model="form.assetPeople" placeholder="assetPeople"></el-input>-->
-        <!--</el-form-item>-->
-
-
-        <el-form-item label="assetPeople" prop="assetPeople">
-          <el-select v-model="form.assetPeople"  filterable remote placeholder="请输入关键词" :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">
-            <el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName" :value="item.employeeName"> </el-option>
-          </el-select>
-        </el-form-item>
-
-
         <el-form-item label="assetStatus">
           <el-select class="filter-item" v-model="form.assetStatus" placeholder="please select assetStatus">
-            <el-option v-for="item in  assetStatusOptions" :key="item" :label="assetStatusOptionsC[item]"
-                       :value="item"></el-option>
+            <el-option v-for="item in  assetStatusOptions" :key="item" :label="assetStatusOptionsC[item]" :value="item"></el-option>
           </el-select>
         </el-form-item>
 
         <!--<el-form-item label="描述">-->
-        <!--<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" placeholder="请输入内容"-->
-        <!--v-model="form.description"></el-input>-->
+          <!--<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" placeholder="请输入内容"-->
+                    <!--v-model="form.description"></el-input>-->
         <!--</el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -180,17 +158,11 @@
           <div style="float: left">
             <img src="../../../static/images/others/cpelogo.png" style="width: 26px"/>
             <span style="font-size: 14px"> ASSET DETAILS: </span>
-            <p style="margin-top:8px;margin-left: 5px;font-size: 10px;text-align: center;color: black" class="font-6px">
-              <span style="margin-right: 5px; font-weight: bold;font-size: 10px">SN:</span><span
-              style="margin-right: 5px; font-size: 10px;font-weight: bold">{{this.form.serialNumber}}</span></p>
-            <p style="margin-left: 5px;font-size: 10px;color: black"><span
-              style="margin-right: 5px; font-weight: bold;font-size: 10px;">TN:</span><span
-              style="margin-right: 5px; font-weight: bold;font-size: 10px;">{{this.form.taggerNumber}}</span></p>
+            <p style="margin-top:8px;margin-left: 5px;font-size: 10px;text-align: center;color: black" class="font-6px"><span style="margin-right: 5px; font-weight: bold;font-size: 10px">SN:</span><span style="margin-right: 5px; font-size: 10px;font-weight: bold">{{this.form.serialNumber}}</span></p>
+            <p style="margin-left: 5px;font-size: 10px;color: black"><span style="margin-right: 5px; font-weight: bold;font-size: 10px;">TN:</span><span style="margin-right: 5px; font-weight: bold;font-size: 10px;">{{this.form.taggerNumber}}</span></p>
           </div>
           <div>
-            <img
-              :src="'http://172.30.1.81:8765/api/asset/employee/qrCode?assetQrcodeAddress='+this.form.assetQrcodeAddress"
-              style="width:83px; height: 83px"/>
+            <img :src="'http://172.30.1.81:8765/api/asset/employee/qrCode?assetQrcodeAddress='+this.form.assetQrcodeAddress" style="width:83px; height: 83px"/>
           </div>
         </div>
       </div>
@@ -217,32 +189,19 @@
     putObj,
     getQrCode
   } from 'src/api/asset/asset/index';
-  import {pageAsset} from 'src/api/asset/employee/index'
   import {mapGetters} from 'vuex';
 
-  var placeholders = {
-    "assetType": "input assetClass",
-    "serialNumber": "input serialNumber",
-    "computerModel": "input computerModel",
-    "taggerNumber": "input taggerNumber"
-  };
+  var placeholders = {"assetType": "input assetClass","serialNumber": "input serialNumber", "computerModel": "input computerModel","taggerNumber":"input taggerNumber"};
   export default {
     name: 'user',
     data() {
       return {
-        remoteDataForm:{
-          assetPeople:[],
-          total: undefined,
-          loading: false,
-          lItems: [],
-        },
         form: {
           computerModel: undefined,
           beijingCode: undefined,
           serialNumber: undefined,
           assetType: 'cpu',
           assetStatus: 0,
-          assetPeople: undefined,
           assetQrcodeAddress: undefined
         },
         rules: {
@@ -292,12 +251,12 @@
         listQuery: {
           page: 1,
           limit: 20,
-          assetClass: 0
+          assetClass: 2
         },
-        assetOptions: ['cpu', 'ldaptop', 'moniter', 'phone', 'avt',
-          'server', 'storage', 'network switch', 'work station', 'it rack', 'printer', 'Thin Client', 'Projector', 'Fax Machine', 'others'],
-        assetStatusOptions: [0, 1, 2],
-        assetStatusOptionsC: ['FREE', 'IN USE', 'BROKEN'],
+        assetOptions: ['cpu', 'ldaptop','moniter','phone','avt',
+          'server','storage','network switch','work station','it rack','printer','Thin Client','Projector','Fax Machine','others'],
+        assetStatusOptions: [0,1,2],
+        assetStatusOptionsC:['FREE','IN USE','BROKEN'],
         dialogFormVisible: false,
         dialogStatus: '',
         userManager_btn_edit: false,
@@ -345,7 +304,7 @@
           })
       },
       handleFilter() {
-        this.listQuery = {}
+        this.listQuery={}
         this.getList();
       },
       handleSizeChange(val) {
@@ -377,11 +336,11 @@
           },
         })
       },
-      handleQrCord(row) {
+      handleQrCord(row){
         getQrCode(row.assetId)
-          .then(response => {
-            this.form = response.data;
-            this.dialogQrCodeVisible = true;
+          .then(response=>{
+            this.form=response.data;
+            this.dialogQrCodeVisible=true;
           })
 
 
@@ -478,26 +437,11 @@
         window.document.body.innerHTML = oldstr;
         return false;
       },
-      remoteEmployeeMethod(query) {
-        if (query !== '') {
-          this.remoteDataForm.loading = true;
-          this.remoteDataForm.loading = false;
-          pageAsset({
-            employeeName: query
-          }).then(response => {
-            this.remoteDataForm.lItems = response.data.rows;
-            this.remoteDataForm.total = response.data.total;
-            this.remoteDataForm.loading = false;
-          });
-        } else {
-          this.remoteDataForm.lItems = [];
-        }
-      },
     }
   }
 </script>
 <style lang="scss">
-  .font-6px {
+  .font-6px{
     transform: scale(0.8);
     font-size: 12px;
   }

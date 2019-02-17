@@ -69,7 +69,6 @@ export const constantRouterMap = [{
       name: '简述'
     }]
   },
-
   {
     path: '/building',
     component: Layout,
@@ -85,7 +84,7 @@ export const constantRouterMap = [{
   {
     path: '/assetManager',
     component: Layout,
-    name: 'record',
+    name: 'asset',
     icon: 'setting',
     authority: 'asset',
     children: [{
@@ -99,16 +98,34 @@ export const constantRouterMap = [{
       name: 'record',
       authority: 'assetManager'
     }, {
-        path: 'block',
-        component: _import('block/index'),
-        name: 'block',
+        path: 'othersAssets',
+        component: _import('asset/othersIndex'),
+        name: 'othersAssets',
         authority: 'assetManager'
       }, {
+      path: 'scrappedAssets',
+      component: _import('asset/scrappedIndex'),
+      name: 'scrappedIndex',
+      authority: 'assetManager'
+    }, {
       path: 'check',
       component: _import('checkrecord/index'),
       name: 'check',
       authority: 'assetManager'
     }]
+  },
+  {
+    path: '/officeManager',
+    component: Layout,
+    name: 'office',
+    icon: 'setting',
+    authority: 'office',
+    children: [{
+        path: 'blocks',
+        component: _import('block/index'),
+        name: 'blocks',
+        authority: 'assetManager'
+      }]
   },
 ]
 
@@ -231,7 +248,22 @@ export const asyncRouterMap = [
     children: [{
       path: 'employee',
       component: _import('employee/index'),
-      name: '员工管理',
+      name: 'BJZZ_DG_employee',
+      authority: 'employeeManager'
+    },{
+      path: 'employeeGes',
+      component: _import('employee/gesIndex'),
+      name: 'gesEmployee',
+      authority: 'employeeManager'
+    },{
+      path: 'employeeMission',
+      component: _import('employee/missionIndex'),
+      name: 'employeeMission',
+      authority: 'employeeManager'
+    },{
+      path: 'employeeThird',
+      component: _import('employee/thirdIndex'),
+      name: 'employeeThird',
       authority: 'employeeManager'
     }]
   },

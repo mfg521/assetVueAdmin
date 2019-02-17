@@ -4,16 +4,18 @@
     <div class="ivu-layout-content" style="height: 92%">
 
       <!--背景图片将每个用户对应到具体的位置 index rowNum indexs lineNum-->
-      <div class="node" :style="{background: 'url(' + './static/images/rooms/'+floor6.employeeBlocks.roomNum+'.png' + ')' +'0% 0% / 100%' + 'no-repeat'}">
+      <div class="node"
+           :style="{background: 'url(' + './static/images/rooms/'+floor6.employeeBlocks.roomNum+'.png' + ')' +'0% 0% / 100%' + 'no-repeat'}">
         <div v-for="(employeeBlock,indexBlock) in floor6.employeeBlocks.employeeBlockVoList" :key="index">
           <div v-for="(employees,index) in employeeBlock.employee" :key="index">
 
             <!--将生成好的employeeBlocks进行渲染-->
             <div v-for="(employe,indexs)  in employees" :key="indexs"
-                  :style="{left : employeeBlock.block.intervalWidth*indexs+employeeBlock.block.mleft*1+'%',
+                 :style="{left : employeeBlock.block.intervalWidth*indexs+employeeBlock.block.mleft*1+'%',
                                            top : employeeBlock.block.intervalHeight*index+employeeBlock.block.mtop*1+'%',
                                            width: employeeBlock.block.mwidth*1+'%',height:employeeBlock.block.mheight*1+'%'}"
-                 :class=" index+' drag-div ' +indexs +' '+ employeeBlock.block.id" @drop='drop($event)' @dragover='allowDrop($event)'
+                 :class=" index+' drag-div ' +indexs +' '+ employeeBlock.block.id" @drop='drop($event)'
+                 @dragover='allowDrop($event)'
                  @click="clickOnes(employe,$event)">
 
               <!--如果当前位置有员工-->
@@ -38,21 +40,24 @@
               <img
                 :src="'http://172.30.1.81:8765/api/asset/employee/employeeUrl?employeeUrl='+CurentEmployee.employeeUrl"
                 :onerror="defaultImg" style="width: 35%; height: 35%; border-radius: 50%;">
-              <p style="margin-bottom: 5%; margin-top: 5%;font-size: 16px" >
+              <p style="margin-bottom: 5%; margin-top: 5%;font-size: 16px">
                 <span v-if="CurentEmployee.employeeName!==undefined" style="font-weight: bold;"
                       @click="employeeDialog.dialogFormVisible = true">name:{{CurentEmployee.employeeName}}<el-button
                   type="info" style="margin-left:2%">Change Emoloyee</el-button></span>
 
                 <span v-else @click="employeeDialog.dialogFormVisible = true">No Employee<el-button
-                type="info" style="margin-left:2%">Add new</el-button></span>
+                  type="info" style="margin-left:2%">Add new</el-button></span>
 
               </p>
               <div style="text-align: left; font-size: 16px;font-weight: bold;">
-                <p style="margin: 0"><span style="margin-right: 2%; font-weight: bold;font-size: 16px">department:</span>{{CurentEmployee.department}}
+                <p style="margin: 0"><span
+                  style="margin-right: 2%; font-weight: bold;font-size: 16px">department:</span>{{CurentEmployee.department}}
                 </p>
-                <p style="margin: 0"><span style="margin-right: 2%; font-weight: bold;font-size: 16px">email_address:</span>{{CurentEmployee.emailAddress}}
+                <p style="margin: 0"><span
+                  style="margin-right: 2%; font-weight: bold;font-size: 16px">email_address:</span>{{CurentEmployee.emailAddress}}
                 </p>
-                <p style="margin: 0"><span style="margin-right: 2%; font-weight: bold;font-size: 16px">internal_no:</span>{{CurentEmployee.internalNo}}
+                <p style="margin: 0"><span
+                  style="margin-right: 2%; font-weight: bold;font-size: 16px">internal_no:</span>{{CurentEmployee.internalNo}}
                 </p>
                 <p style="margin: 0"><span style="margin-right: 2%; font-weight: bold;font-size: 16px">dubai_no:</span>{{CurentEmployee.dubaiNo}}
                 </p>
@@ -60,7 +65,8 @@
                 <!--style="margin-right: 5%; margin-top: 5%;font-weight: bold;">Company Details</span></p>-->
 
                 <hr style="color: black;margin-bottom: 1%;margin-top: 1%"/>
-                <p style="margin: 0"><span style="margin-right:5%; font-weight: bold;font-size: 16px">Asset Info:</span></p>
+                <p style="margin: 0"><span style="margin-right:5%; font-weight: bold;font-size: 16px">Asset Info:</span>
+                </p>
               </div>
               <div>
                 <a class="guide_item"><i class="iconfont icon-zhuji" @click="clickForAssetInfo('cpu')"></i></a>
@@ -79,9 +85,11 @@
               <div style="text-align: left; width: 80%;float: left ">
                 <span style="font-weight: bold; clear: both;font-size: 15px">Record Details:</span>
                 <hr style="color: black;margin-bottom: 5px;margin-top: 5px"/>
-                <p style="margin: 0"><span style="margin-right: 10%; font-weight: bold; font-size: 16px">Serial Number</span>{{CurentAseet.serialNumber}}
+                <p style="margin: 0"><span
+                  style="margin-right: 10%; font-weight: bold; font-size: 16px">Serial Number</span>{{CurentAseet.serialNumber}}
                 </p>
-                <p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;font-size: 16px  ">BorrowedDate</span>{{CurentAseet.borrowedDate}}
+                <p style="margin: 0"><span
+                  style="margin-right: 10%; font-weight: bold;font-size: 16px  ">BorrowedDate</span>{{CurentAseet.borrowedDate}}
                 </p>
                 <!--<p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;">beijing Code</span>{{CurentAseet.beijingCode}}</p>-->
                 <!--<p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;">FN Code</span>{{CurentAseet.financeCode}}</p>-->
@@ -103,7 +111,8 @@
                 <span v-else-if="this.assetType==='monitor'">No MONITOR ASSET</span>
                 <span v-else-if="this.assetType==='laptop'">No LAPTOP ASSET</span>
                 <span v-else="this.assetType==='phone'">No PHONE ASSET</span>
-                <span @click="dialog.dialogFormVisible = true"><el-button type="info" style="margin-left:2%">Add new</el-button></span>
+                <span @click="dialog.dialogFormVisible = true"><el-button type="info"
+                                                                          style="margin-left:2%">Add new</el-button></span>
               </div>
             </div>
           </div>
@@ -130,7 +139,12 @@
       <el-dialog :title="employeeDialog.dialogTitle" :visible.sync="employeeDialog.dialogFormVisible">
         <el-form :model="changeEmployeeForm" ref="recordForm" label-width="100px">
           <el-form-item label="employeeNum" prop="employeeNum">
-            <el-input v-model="changeEmployeeForm.employeeNum"></el-input>
+            <!--<el-input v-model="changeEmployeeForm.employeeNum"></el-input>-->
+            <el-select v-model="changeEmployeeForm.employeeNum" filterable remote placeholder="请输入关键词"
+                       :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">
+              <el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName"
+                         :value="item.emailAddress"></el-option>
+            </el-select>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -146,12 +160,18 @@
   import draggable from 'vuedraggable';
   import {mapState} from 'vuex'
   import {getAssetInfo, returnAsset, changeAsset} from "../../api/asset/record";
-  import {changeEmpByDrop, changeOrSaveEmpBlock} from "../../api/asset/employee";
+  import {changeEmpByDrop, changeOrSaveEmpBlock,pageAsset} from "../../api/asset/employee";
 
   let dom = '';
   export default {
     data() {
       return {
+        remoteDataForm: {
+          assetPeople: [],
+          total: undefined,
+          loading: false,
+          lItems: [],
+        },
         employeeDialog: {
           dialogEdit: false,
           dialogTitle: 'Modify employee information',
@@ -179,15 +199,33 @@
         CurentAseet: '',
         CurentEmployee: {},
         assetType: '',
-        defaultImg: 'this.src="' + require('../../../static/images/default.png') + '"'
-
+        defaultImg: 'this.src="' + require('../../../static/images/default.png') + '"',
+        changeRed: -1
       }
     },
 
     methods: {
 
+      remoteEmployeeMethod(query) {
+        if (query !== '') {
+          this.remoteDataForm.loading = true;
+          this.remoteDataForm.loading = false;
+          pageAsset({
+            emailAddress: query
+          }).then(response => {
+            this.remoteDataForm.lItems = response.data.rows;
+            this.remoteDataForm.total = response.data.total;
+            this.remoteDataForm.loading = false;
+          });
+        } else {
+          this.remoteDataForm.lItems = [];
+        }
+      },
+
       //点击每一个位置来显示右边的匡
       clickOnes(employee, event) {    //
+        // event.style="backgroudColor: red"
+        // this.changeRed = index;
         this.CurentAseet = ''
         this.CurentEmployee = employee;
         //说明是增加
@@ -199,10 +237,10 @@
           //分别处理xindex和yindex是否相同的两种情况
           if (event.srcElement.classList.length === 4) {
             yindex = event.srcElement.classList[2]
-            blockId= event.srcElement.classList[3]
+            blockId = event.srcElement.classList[3]
           } else {
             yindex = xindex
-            blockId= event.srcElement.classList[2]
+            blockId = event.srcElement.classList[2]
           }
           this.changeEmployeeForm.xindex = xindex
           this.changeEmployeeForm.yindex = yindex
@@ -215,10 +253,10 @@
           var blockId = ''
           if (event.srcElement.parentElement.parentElement.classList.length === 4) {
             yindex = event.srcElement.parentElement.parentElement.classList[2]
-            blockId= event.srcElement.parentElement.parentElement.classList[3]
+            blockId = event.srcElement.parentElement.parentElement.classList[3]
           } else {
             yindex = xindex
-            blockId= event.srcElement.parentElement.parentElement.classList[2]
+            blockId = event.srcElement.parentElement.parentElement.classList[2]
           }
           this.changeEmployeeForm.xindex = xindex
           this.changeEmployeeForm.yindex = yindex
@@ -232,8 +270,8 @@
         this.CurentAseet = ''
         this.assetType = assetType;
         const employeeUuid = this.CurentEmployee.employeeUuid
-        const emailAddress=this.CurentEmployee.emailAddress
-        const asset = await getAssetInfo({emailAddress,employeeUuid, assetType});
+        const emailAddress = this.CurentEmployee.emailAddress
+        const asset = await getAssetInfo({emailAddress, employeeUuid, assetType});
         if (asset.length > 0) {
           this.CurentAseet = asset[0]
           console.log(this.CurentAseet)
@@ -245,11 +283,11 @@
         const result = confirm("confirm to Remove Asset?")
         console.log(result)
         if (result) {
-          const emailAddress=this.CurentEmployee.emailAddress
+          const emailAddress = this.CurentEmployee.emailAddress
           const employeeUuid = this.CurentEmployee.employeeUuid
           const serialNumber = this.CurentAseet.serialNumber
           console.log(serialNumber)
-          const result = await returnAsset({emailAddress,employeeUuid, serialNumber});
+          const result = await returnAsset({emailAddress, employeeUuid, serialNumber});
           console.log(result)
           if (result.code === 0) {
             this.CurentAseet = ''
@@ -283,7 +321,7 @@
         const result = await changeOrSaveEmpBlock(employeeVo)
         if (result.code === 0) {
           this.$message.success("Change Or Save Employee successfully!");
-          this.$store.dispatch('getEmployeeBlock', {roomNum:this.floor6.employeeBlocks.roomNum})
+          this.$store.dispatch('getEmployeeBlock', {roomNum: this.floor6.employeeBlocks.roomNum})
           this.employeeDialog.dialogFormVisible = false
 
         } else {
@@ -309,7 +347,7 @@
           if (event.srcElement.className != 'select-item') {
             var xindex = event.srcElement.classList[0]       //要移到的座位坐标，xindex,yindex
             var yindex = ''
-            var blockId= ''
+            var blockId = ''
             //为了防止xindex和yindex类名一致而只有一个
             if (event.srcElement.classList.length === 4) {
               yindex = event.srcElement.classList[2]
@@ -319,7 +357,7 @@
               blockId = event.srcElement.classList[2]
             }
             var employeeUuid = this.CurrentEmployeeUUID
-            const result = await changeEmpByDrop({employeeUuid, xindex, yindex,blockId})
+            const result = await changeEmpByDrop({employeeUuid, xindex, yindex, blockId})
             if (result.code === 0) {
               event.target.appendChild(dom);
             } else {
@@ -336,8 +374,10 @@
 
       allowDrop(event) {
         event.preventDefault();
-      }
+      },
       //进行div拖拽End
+
+
     },
 
     computed: {
@@ -418,6 +458,10 @@
 
   .select-item:hover {
     background-color rgba(170, 170, 170, 0.5)
+  }
+
+  .select-item::choices {
+    background-color rgba(100, 100, 100, 0.5)
   }
 
   //存在的位置

@@ -46,12 +46,11 @@
           <span>{{scope.row.emailAddress}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="120" align="center" label="roomNum">
+      <el-table-column width="150" align="center" label="employeeClass">
         <template scope="scope">
-          <span>{{scope.row.roomNum}}</span>
+          <span>{{scope.row.employeeClass}}</span>
         </template>
       </el-table-column>
-
       <el-table-column width="110" align="center" label="internalNo">
         <template scope="scope">
           <span>{{scope.row.internalNo}}</span>
@@ -70,6 +69,11 @@
       <el-table-column width="220" align="center" label="dubaiMobileNo">
         <template scope="scope">
           <span>{{scope.row.dubaiMobileNo}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="220" align="center" label="roomNum">
+        <template scope="scope">
+          <span>{{scope.row.roomNum}}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="Operator" width="250">
@@ -109,11 +113,12 @@
             <el-option v-for="item in  sexOptions" :key="item" :label="item" :value="item"></el-option>
           </el-select>
         </el-form-item>
-        <!--<el-form-item label="employeeClass">-->
-          <!--<el-select class="filter-item" v-model="form.employeeClass" placeholder="please select employeeClass">-->
-            <!--<el-option v-for="item in  employeeClassOptions" :key="item" :label="item" :value="item"></el-option>-->
-          <!--</el-select>-->
-        <!--</el-form-item>-->
+        <el-form-item label="employeeClass">
+          <el-select class="filter-item" v-model="form.employeeClass" placeholder="please select employeeClass">
+            <el-option v-for="item in  employeeClassOptions" :key="item" :label="item" :value="item"></el-option>
+          </el-select>
+
+        </el-form-item>
         <el-form-item label="employeeName" prop="employeeName">
           <el-input v-model="form.employeeName" placeholder="please input employeeName"></el-input>
         </el-form-item>
@@ -221,11 +226,11 @@
         listQuery: {
           page: 1,
           limit: 20,
-          employeeClass: 'BJ_DG_ZZ',
+          employeeClass: 'BJ_MISSION',
           employeeName: undefined
         },
         sexOptions: ['one', 'two'],
-        // employeeClassOptions: ['BJ_DG_ZZ', 'BJ_MISSION','GES','THRID-PARTY'],
+        employeeClassOptions: ['BJ_DG_ZZ', 'BJ_MISSION','GES','THRID-PARTY'],
         dialogFormVisible: false,
         dialogStatus: '',
         employeeManager_btn_edit: false,
@@ -364,7 +369,7 @@
           photo: undefined,
           employeeName: undefined,
           department: 'one',
-          // employeeClass: 'beijing recruitment',
+          employeeClass: 'beijing recruitment',
           emailAddress: undefined,
           internalNo: undefined,
           beijingNo: undefined,

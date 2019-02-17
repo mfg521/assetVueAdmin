@@ -71,3 +71,11 @@ export function reqEmpBlockInfo(obj) {
     data: obj
   })
 }
+
+export function pageAsset(query) {
+  return fetch({
+    url: '/api/asset/employee/page',
+    method: 'get',
+    params: query
+  });
+}
