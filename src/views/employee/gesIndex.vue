@@ -46,11 +46,12 @@
           <span>{{scope.row.emailAddress}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="150" align="center" label="employeeClass">
+      <el-table-column width="120" align="center" label="roomNum">
         <template scope="scope">
-          <span>{{scope.row.employeeClass}}</span>
+          <span>{{scope.row.roomNum}}</span>
         </template>
       </el-table-column>
+
       <el-table-column width="110" align="center" label="internalNo">
         <template scope="scope">
           <span>{{scope.row.internalNo}}</span>
@@ -69,11 +70,6 @@
       <el-table-column width="220" align="center" label="dubaiMobileNo">
         <template scope="scope">
           <span>{{scope.row.dubaiMobileNo}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column width="220" align="center" label="roomNum">
-        <template scope="scope">
-          <span>{{scope.row.roomNum}}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="Operator" width="250">
@@ -113,12 +109,11 @@
             <el-option v-for="item in  sexOptions" :key="item" :label="item" :value="item"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="employeeClass">
-          <el-select class="filter-item" v-model="form.employeeClass" placeholder="please select employeeClass">
-            <el-option v-for="item in  employeeClassOptions" :key="item" :label="item" :value="item"></el-option>
-          </el-select>
-
-        </el-form-item>
+        <!--<el-form-item label="employeeClass">-->
+          <!--<el-select class="filter-item" v-model="form.employeeClass" placeholder="please select employeeClass">-->
+            <!--<el-option v-for="item in  employeeClassOptions" :key="item" :label="item" :value="item"></el-option>-->
+          <!--</el-select>-->
+        <!--</el-form-item>-->
         <el-form-item label="employeeName" prop="employeeName">
           <el-input v-model="form.employeeName" placeholder="please input employeeName"></el-input>
         </el-form-item>
@@ -140,6 +135,11 @@
         <el-form-item label="dubaiMobileNo" prop="dubaiMobileNo">
           <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo"></el-input>
           <el-input v-else v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo" ></el-input>
+        </el-form-item>
+
+        <el-form-item label="priority" prop="priority">
+          <el-input v-if="dialogStatus == 'create'" v-model="form.priority" placeholder="please input priority"></el-input>
+          <el-input v-else v-model="form.priority" placeholder="please input priority" ></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -169,9 +169,10 @@
       return {
         form: {
           photo: undefined,
+          priority: undefined,
           employeeName: undefined,
-          department: 'one',
-          employeeClass: 'BJ_DG_ZZ',
+          department: 'Top Management',
+          employeeClass: 'GES',
           emailAddress: undefined,
           internalNo: undefined,
           beijingNo: undefined,
@@ -229,8 +230,9 @@
           employeeClass: 'GES',
           employeeName: undefined
         },
-        sexOptions: ['one', 'two'],
-        employeeClassOptions: ['BJ_DG_ZZ', 'BJ_MISSION','GES','THRID-PARTY'],
+        sexOptions: ['Top Management', 'Administration','Human Resource','Finance',
+          'Business Development','Project Execution ','Project Control','Quality & Standards','Engineering Department'],
+        // employeeClassOptions: ['BJ_DG_ZZ', 'BJ_MISSION','GES','THRID-PARTY'],
         dialogFormVisible: false,
         dialogStatus: '',
         employeeManager_btn_edit: false,
@@ -368,8 +370,7 @@
         this.form = {
           photo: undefined,
           employeeName: undefined,
-          department: 'one',
-          employeeClass: 'beijing recruitment',
+          department: 'Top Management',
           emailAddress: undefined,
           internalNo: undefined,
           beijingNo: undefined,
