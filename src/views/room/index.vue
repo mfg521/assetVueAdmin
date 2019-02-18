@@ -10,7 +10,7 @@
           <div v-for="(employees,index) in employeeBlock.employee" :key="index">
 
             <!--将生成好的employeeBlocks进行渲染-->
-            <div v-for="(employe,indexs)  in employees" :key="indexs"
+            <div ref="menuItem" v-for="(employe,indexs)  in employees" :key="indexs"
                  :style="{left : employeeBlock.block.intervalWidth*indexs+employeeBlock.block.mleft*1+'%',
                                            top : employeeBlock.block.intervalHeight*index+employeeBlock.block.mtop*1+'%',
                                            width: employeeBlock.block.mwidth*1+'%',height:employeeBlock.block.mheight*1+'%'}"
@@ -223,8 +223,10 @@
 
       //点击每一个位置来显示右边的匡
       clickOnes(employee, event) {    //
-        // event.style="backgroudColor: red"
-        // this.changeRed = index;
+        //event.style="background-color: red"
+        console.info(event)
+        console.info(event.srcElement.innerHTML)
+        //this.changeRed = index;
         this.CurentAseet = ''
         this.CurentEmployee = employee;
         //说明是增加
@@ -477,6 +479,10 @@
 
   .drag-div:hover {
     background-color rgba(170, 170, 170, 0.5)
+  }
+
+  drag-div1:selection{
+    background-color: red
   }
 
   .drag-people-label {
