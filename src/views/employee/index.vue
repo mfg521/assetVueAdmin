@@ -12,7 +12,7 @@
                  type="primary" icon="edit">add
       </el-button>
 
-      <el-button class="filter-item"  style="margin-left: 10px;" type="primary" ><a href="http://172.30.1.81:8763/download/contact">下载</a></el-button>
+      <el-button class="filter-item"  style="margin-left: 10px;" type="primary" ><a href="http://172.30.1.81:8763/download/contact">Download</a></el-button>
     </div>
 
     <!--列表-->
