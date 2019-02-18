@@ -352,7 +352,7 @@
           type: 'warning'
         })
           .then(() => {
-            delObj(row.assetId)
+            putObj(row.assetId,{assetId:row.assetId,assetClass: 2})
               .then(() => {
                 this.$notify({
                   title: 'Delete',

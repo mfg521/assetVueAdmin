@@ -29,7 +29,7 @@
     <!--列表-->
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row
               style="width: 100%">
-      <el-table-column align="center" label="No" width="65">
+      <el-table-column align="center" label="No" width="80">
         <template scope="scope">
           <span>{{scope.row.assetId}}</span>
         </template>
@@ -139,17 +139,10 @@
 
 
         <!--<el-form-item label="assetPeople" prop="assetPeople">-->
-          <!--<el-input v-if="dialogStatus == 'create'" v-model="form.assetPeople"-->
-                    <!--placeholder="please input assetPeople"></el-input>-->
-          <!--<el-input v-else v-model="form.assetPeople" placeholder="assetPeople"></el-input>-->
+          <!--<el-select v-model="form.assetPeople"  filterable remote placeholder="请输入关键词" :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">-->
+            <!--<el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName" :value="item.employeeName"> </el-option>-->
+          <!--</el-select>-->
         <!--</el-form-item>-->
-
-
-        <el-form-item label="assetPeople" prop="assetPeople">
-          <el-select v-model="form.assetPeople"  filterable remote placeholder="请输入关键词" :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">
-            <el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName" :value="item.employeeName"> </el-option>
-          </el-select>
-        </el-form-item>
 
 
         <el-form-item label="assetStatus">
@@ -393,7 +386,7 @@
           type: 'warning'
         })
           .then(() => {
-            delObj(row.assetId)
+            putObj(row.assetId,{assetId:row.assetId,assetClass: 2})
               .then(() => {
                 this.$notify({
                   title: 'Delete',

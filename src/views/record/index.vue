@@ -15,42 +15,52 @@
           <span>{{scope.row.recordId}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="100" align="center" label="empId">
-        <template scope="scope">
-          <span>{{scope.row.employeeId}}</span>
-        </template>
-      </el-table-column>
 
-      <el-table-column width="200" align="center" label="employeeName">
+      <el-table-column width="160" align="center" label="employeeName">
         <template scope="scope">
           <span>{{scope.row.employeeName}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="100" align="center" label="roomNum">
+      <el-table-column width="120" align="center" label="roomNum">
         <template scope="scope">
           <span>{{scope.row.roomNum}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="200" align="center" label="serialNumber">
+      <el-table-column width="160" align="center" label="serialNumber">
         <template scope="scope">
           <span>{{scope.row.serialNumber}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="200" align="center" label="borrowedDate">
+      <el-table-column width="180" align="center" label="borrowedDate">
         <template scope="scope">
           <span>{{scope.row.borrowedDate}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="200" align="center" label="returnDate">
+      <el-table-column width="180" align="center" label="returnDate">
         <template scope="scope">
           <span>{{scope.row.returnDate}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="100" align="center" label="Class">
+      <el-table-column width="160" align="center" label="assetType">
         <template scope="scope">
           <span>{{scope.row.assetType}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="180" align="center" label="operatorTime">
+        <template scope="scope">
+          <span>{{scope.row.operatorTime}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="160" align="center" label="operatorType">
+        <template scope="scope">
+          <span>{{scope.row.operatorType}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="160" align="center" label="operatorPeople">
+        <template scope="scope">
+          <span>{{scope.row.operatorPeople}}</span>
         </template>
       </el-table-column>
       <el-table-column width="150" align="center" label="isReturned">
