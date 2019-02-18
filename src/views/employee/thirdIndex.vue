@@ -371,6 +371,7 @@
           photo: undefined,
           employeeName: undefined,
           department: 'Top Management',
+          employeeClass: 'THRID-PARTY',
           emailAddress: undefined,
           internalNo: undefined,
           beijingNo: undefined,

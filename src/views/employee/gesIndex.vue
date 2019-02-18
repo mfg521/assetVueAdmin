@@ -370,6 +370,7 @@
         this.form = {
           photo: undefined,
           employeeName: undefined,
+          emailClass: 'GES',
           department: 'Top Management',
           emailAddress: undefined,
           internalNo: undefined,

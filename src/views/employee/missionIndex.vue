@@ -371,6 +371,7 @@
           photo: undefined,
           employeeName: undefined,
           department: 'Top Management',
+          employeeClass: 'BJ_MISSION',
           emailAddress: undefined,
           internalNo: undefined,
           beijingNo: undefined,
