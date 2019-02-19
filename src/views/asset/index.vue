@@ -292,7 +292,7 @@
           limit: 20,
           assetClass: 0
         },
-        assetOptions: ['cpu', 'ldaptop', 'moniter', 'phone', 'avt',
+        assetOptions: ['cpu', 'laptop', 'monitor', 'phone', 'avt',
           'server', 'storage', 'network switch', 'work station', 'it rack', 'printer', 'Thin Client', 'Projector', 'Fax Machine', 'others'],
         assetStatusOptions: [0, 1, 2],
         assetStatusOptionsC: ['IN STORE', 'IN USE', 'BROKEN'],
@@ -343,7 +343,9 @@
           })
       },
       handleFilter() {
-        this.listQuery = {}
+        this.listQuery = {
+          assetClass: 0
+        }
         this.getList();
       },
       handleSizeChange(val) {

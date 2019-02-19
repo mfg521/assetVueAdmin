@@ -8,20 +8,20 @@
       <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">search</el-button>
 
       <!--添加按钮-->
-      <el-button class="filter-item" v-if="employeeManager_btn_add" style="margin-left: 10px;" @click="handleCreate"
+      <el-button class="filter-item"  style="margin-left: 10px;" @click="handleCreate"
                  type="primary" icon="edit">add
       </el-button>
 
-      <!--<el-button class="filter-item"  style="margin-left: 10px;" type="primary" ><a href="http://172.30.1.81:8763/download/contact">下载</a></el-button>-->
+      <el-button class="filter-item" style="margin-left: 10px;" type="primary"><a
+        href="http://172.30.1.81:8763/download/contact">Download</a></el-button>
     </div>
 
     <!--列表-->
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row
               style="width: 100%">
-      <el-table-column align="center" label="no" width="60">
-        <template scope="scope">
-          <span>{{scope.row.employeeId}}</span>
-        </template>
+      <el-table-column
+        type="index"
+        width="80">
       </el-table-column>
       <el-table-column width="90" align="center" label="photo">
         <template scope="scope">
@@ -36,9 +36,14 @@
           <span>{{scope.row.employeeName}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="140" align="center" label="department">
+      <el-table-column width="180" align="center" label="department">
         <template scope="scope">
           <span>{{scope.row.department}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="330" align="center" label="designation">
+        <template scope="scope">
+          <span>{{scope.row.designation}}</span>
         </template>
       </el-table-column>
       <el-table-column width="250" align="center" label="emailAddress">
@@ -74,10 +79,10 @@
       </el-table-column>
       <el-table-column align="center" label="Operator" width="250">
         <template scope="scope">
-          <el-button v-if="employeeManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">edit
+          <el-button  size="small" type="success" @click="handleUpdate(scope.row)">edit
           </el-button>
           <!--<el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>-->
-          <el-button v-if="employeeManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">delete
+          <el-button  size="small" type="danger" @click="handleDelete(scope.row)">delete
           </el-button>
         </template>
       </el-table-column>
@@ -109,37 +114,49 @@
             <el-option v-for="item in  sexOptions" :key="item" :label="item" :value="item"></el-option>
           </el-select>
         </el-form-item>
-        <!--<el-form-item label="employeeClass">-->
-          <!--<el-select class="filter-item" v-model="form.employeeClass" placeholder="please select employeeClass">-->
-            <!--<el-option v-for="item in  employeeClassOptions" :key="item" :label="item" :value="item"></el-option>-->
-          <!--</el-select>-->
-        <!--</el-form-item>-->
+
+        <el-form-item label="emailAddress" prop="emailAddress">
+          <el-input v-if="dialogStatus == 'create'" v-model="form.emailAddress"
+                    placeholder="please input emailAddress"></el-input>
+          <el-input v-else v-model="form.emailAddress" placeholder="please input emailAddress"></el-input>
+        </el-form-item>
+
         <el-form-item label="employeeName" prop="employeeName">
           <el-input v-model="form.employeeName" placeholder="please input employeeName"></el-input>
         </el-form-item>
-        <el-form-item v-if="dialogStatus == 'create'" label="emailAddress" placeholder="please input emailAddress" prop="emailAddress">
-          <el-input v-model="form.emailAddress"></el-input>
+
+        <el-form-item label="designation" prop="designation">
+          <el-input v-if="dialogStatus == 'create'" v-model="form.designation"
+                    placeholder="please input designation"></el-input>
+          <el-input v-else v-model="form.designation" placeholder="please input designation"></el-input>
         </el-form-item>
+
+
         <el-form-item label="internalNo" prop="internalNo">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.internalNo" placeholder="please input internalNo"></el-input>
-          <el-input v-else v-model="form.internalNo" placeholder="please input internalNo" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.internalNo"
+                    placeholder="please input internalNo"></el-input>
+          <el-input v-else v-model="form.internalNo" placeholder="please input internalNo"></el-input>
         </el-form-item>
         <el-form-item label="beijingNo" prop="beijingNo">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.beijingNo" placeholder="please input beijingNo"></el-input>
-          <el-input v-else v-model="form.beijingNo" placeholder="please input beijingNo" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.beijingNo"
+                    placeholder="please input beijingNo"></el-input>
+          <el-input v-else v-model="form.beijingNo" placeholder="please input beijingNo"></el-input>
         </el-form-item>
         <el-form-item label="dubaiNo" prop="dubaiNo">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiNo" placeholder="please input dubaiNo"></el-input>
-          <el-input v-else v-model="form.dubaiNo" placeholder="please input dubaiNo" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiNo"
+                    placeholder="please input dubaiNo"></el-input>
+          <el-input v-else v-model="form.dubaiNo" placeholder="please input dubaiNo"></el-input>
         </el-form-item>
         <el-form-item label="dubaiMobileNo" prop="dubaiMobileNo">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo"></el-input>
-          <el-input v-else v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiMobileNo"
+                    placeholder="please input dubaiMobileNo"></el-input>
+          <el-input v-else v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo"></el-input>
         </el-form-item>
 
         <el-form-item label="priority" prop="priority">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.priority" placeholder="please input priority"></el-input>
-          <el-input v-else v-model="form.priority" placeholder="please input priority" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.priority"
+                    placeholder="please input priority"></el-input>
+          <el-input v-else v-model="form.priority" placeholder="please input priority"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -171,6 +188,7 @@
           photo: undefined,
           priority: undefined,
           employeeName: undefined,
+          designation: undefined,
           department: 'Top Management',
           employeeClass: 'GES',
           emailAddress: undefined,
@@ -202,8 +220,8 @@
             },
             {
               min: 3,
-              max: 20,
-              message: '长度在 3 到 20 个字符',
+              max: 50,
+              message: '长度在 3 到 50 个字符',
               trigger: 'blur'
             }
           ],
@@ -230,9 +248,8 @@
           employeeClass: 'GES',
           employeeName: undefined
         },
-        sexOptions: ['Top Management', 'Administration','Human Resource','Finance',
-          'Business Development','Project Execution ','Project Control','Quality & Standards','Engineering Department'],
-        // employeeClassOptions: ['BJ_DG_ZZ', 'BJ_MISSION','GES','THRID-PARTY'],
+        sexOptions: ['Top Management', 'Administration', 'Human Resource', 'Finance',
+          'Business Development', 'Project Execution ', 'Project Control', 'Quality & Standards', 'Engineering Department'],
         dialogFormVisible: false,
         dialogStatus: '',
         employeeManager_btn_edit: false,
@@ -370,8 +387,8 @@
         this.form = {
           photo: undefined,
           employeeName: undefined,
-          emailClass: 'GES',
           department: 'Top Management',
+          employeeClass: 'GES',
           emailAddress: undefined,
           internalNo: undefined,
           beijingNo: undefined,
@@ -396,22 +413,23 @@
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
-        return  isLt2M;
+        // return isJPG && isLt2M;
+        return isLt2M
       },
-      download: function(){
+      download: function () {
         axios({
           method: "get",
           url: "http://172.30.1.81:8763/api/asset/download/contact",
           responseType: "arraybuffer"
         })
           .then(
-            function(response) {
+            function (response) {
               let filename = "poiImport.xlsx";
               this.fileDownload(response.data, filename);
             }.bind(this)
           )
           .catch(
-            function(error) {
+            function (error) {
               alert("网络请求出错");
             }.bind(this)
           );
