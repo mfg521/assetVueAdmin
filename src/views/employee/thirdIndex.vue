@@ -18,11 +18,11 @@
     <!--列表-->
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row
               style="width: 100%">
-      <el-table-column align="center" label="no" width="60">
-        <template scope="scope">
-          <span>{{scope.row.employeeId}}</span>
-        </template>
-      </el-table-column>
+      <!--<el-table-column align="center" label="no" width="60">-->
+        <!--<template scope="scope">-->
+          <!--<span>{{scope.row.employeeId}}</span>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
       <el-table-column width="90" align="center" label="photo">
         <template scope="scope">
           <!--<span>{{scope.row.employeeUuid}}</span>-->
@@ -387,16 +387,16 @@
         console.log(this.form.employeeUrl)
       },
       beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/png';
+        // const isJPG = file.type === 'image/png';
         const isLt2M = file.size / 1024 / 1024 < 2;
 
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 png 格式!');
-        }
+        // if (!isJPG) {
+        //   this.$message.error('上传头像图片只能是 png 格式!');
+        // }
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
-        return isJPG && isLt2M;
+        return  isLt2M;
       },
       download: function(){
         axios({

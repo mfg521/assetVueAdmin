@@ -12,7 +12,8 @@
                  type="primary" icon="edit">add
       </el-button>
 
-      <el-button class="filter-item"  style="margin-left: 10px;" type="primary" ><a href="http://172.30.1.81:8763/download/contact">Download</a></el-button>
+      <el-button class="filter-item" style="margin-left: 10px;" type="primary"><a
+        href="http://172.30.1.81:8763/download/contact">Download</a></el-button>
     </div>
 
     <!--列表-->
@@ -110,36 +111,42 @@
           </el-select>
         </el-form-item>
         <!--<el-form-item label="employeeClass">-->
-          <!--<el-select class="filter-item" v-model="form.employeeClass" placeholder="please select employeeClass">-->
-            <!--<el-option v-for="item in  employeeClassOptions" :key="item" :label="item" :value="item"></el-option>-->
-          <!--</el-select>-->
+        <!--<el-select class="filter-item" v-model="form.employeeClass" placeholder="please select employeeClass">-->
+        <!--<el-option v-for="item in  employeeClassOptions" :key="item" :label="item" :value="item"></el-option>-->
+        <!--</el-select>-->
         <!--</el-form-item>-->
         <el-form-item label="employeeName" prop="employeeName">
           <el-input v-model="form.employeeName" placeholder="please input employeeName"></el-input>
         </el-form-item>
-        <el-form-item v-if="dialogStatus == 'create'" label="emailAddress" placeholder="please input emailAddress" prop="emailAddress">
+        <el-form-item v-if="dialogStatus == 'create'" label="emailAddress" placeholder="please input emailAddress"
+                      prop="emailAddress">
           <el-input v-model="form.emailAddress"></el-input>
         </el-form-item>
         <el-form-item label="internalNo" prop="internalNo">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.internalNo" placeholder="please input internalNo"></el-input>
-          <el-input v-else v-model="form.internalNo" placeholder="please input internalNo" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.internalNo"
+                    placeholder="please input internalNo"></el-input>
+          <el-input v-else v-model="form.internalNo" placeholder="please input internalNo"></el-input>
         </el-form-item>
         <el-form-item label="beijingNo" prop="beijingNo">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.beijingNo" placeholder="please input beijingNo"></el-input>
-          <el-input v-else v-model="form.beijingNo" placeholder="please input beijingNo" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.beijingNo"
+                    placeholder="please input beijingNo"></el-input>
+          <el-input v-else v-model="form.beijingNo" placeholder="please input beijingNo"></el-input>
         </el-form-item>
         <el-form-item label="dubaiNo" prop="dubaiNo">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiNo" placeholder="please input dubaiNo"></el-input>
-          <el-input v-else v-model="form.dubaiNo" placeholder="please input dubaiNo" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiNo"
+                    placeholder="please input dubaiNo"></el-input>
+          <el-input v-else v-model="form.dubaiNo" placeholder="please input dubaiNo"></el-input>
         </el-form-item>
         <el-form-item label="dubaiMobileNo" prop="dubaiMobileNo">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo"></el-input>
-          <el-input v-else v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.dubaiMobileNo"
+                    placeholder="please input dubaiMobileNo"></el-input>
+          <el-input v-else v-model="form.dubaiMobileNo" placeholder="please input dubaiMobileNo"></el-input>
         </el-form-item>
 
         <el-form-item label="priority" prop="priority">
-          <el-input v-if="dialogStatus == 'create'" v-model="form.priority" placeholder="please input priority"></el-input>
-          <el-input v-else v-model="form.priority" placeholder="please input priority" ></el-input>
+          <el-input v-if="dialogStatus == 'create'" v-model="form.priority"
+                    placeholder="please input priority"></el-input>
+          <el-input v-else v-model="form.priority" placeholder="please input priority"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -230,8 +237,8 @@
           employeeClass: 'BJ_DG_ZZ',
           employeeName: undefined
         },
-        sexOptions: ['Top Management', 'Administration','Human Resource','Finance',
-          'Business Development','Project Execution ','Project Control','Quality & Standards','Engineering Department'],
+        sexOptions: ['Top Management', 'Administration', 'Human Resource', 'Finance',
+          'Business Development', 'Project Execution ', 'Project Control', 'Quality & Standards', 'Engineering Department'],
         // employeeClassOptions: ['BJ_DG_ZZ', 'BJ_MISSION','GES','THRID-PARTY'],
         dialogFormVisible: false,
         dialogStatus: '',
@@ -396,22 +403,23 @@
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
-        return isJPG && isLt2M;
+        // return isJPG && isLt2M;
+        return isLt2M
       },
-      download: function(){
+      download: function () {
         axios({
           method: "get",
           url: "http://172.30.1.81:8763/api/asset/download/contact",
           responseType: "arraybuffer"
         })
           .then(
-            function(response) {
+            function (response) {
               let filename = "poiImport.xlsx";
               this.fileDownload(response.data, filename);
             }.bind(this)
           )
           .catch(
-            function(error) {
+            function (error) {
               alert("网络请求出错");
             }.bind(this)
           );

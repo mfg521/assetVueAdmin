@@ -10,6 +10,7 @@
           <el-option label="serialNumber" value="serialNumber"></el-option>
           <el-option label="computerModel" value="computerModel"></el-option>
           <el-option label="taggerNumber" value="taggerNumber"></el-option>
+          <el-option label="user in charge" value="assetPeople"></el-option>
         </el-select>
       </el-input>
 
@@ -35,46 +36,51 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="150" align="center" label="computerModel">
+      <el-table-column width="150" align="center" label="ComputerModel">
         <template scope="scope">
           <span>{{scope.row.computerModel}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="financeCode" width="150">
+      <el-table-column align="center" label="FinanceCode" width="150">
         <template scope="scope">
           <span>{{scope.row.financeCode}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="beijingCode" width="150">
+      <el-table-column align="center" label="BeijingCode" width="150">
         <template scope="scope">
           <span>{{scope.row.beijingCode}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="180" align="center" label="serialNumber">
+      <el-table-column width="180" align="center" label="SerialNumber">
         <template scope="scope">
           <span>{{scope.row.serialNumber}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="100" align="center" label="assetType">
+      <el-table-column width="120" align="center" label="AssetType">
         <template scope="scope">
           <span>{{scope.row.assetType}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="80" align="center" label="status">
+      <el-table-column width="120" align="center" label="Company">
+        <template scope="scope">
+          <span>{{scope.row.company}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="80" align="center" label="Status">
         <template scope="scope">
           <span v-if="scope.row.assetStatus===0">FREE</span>
           <span v-else-if="scope.row.assetStatus===1">IN USE</span>
           <span v-else>BROKEN</span>
         </template>
       </el-table-column>
-      <el-table-column width="180" align="center" label="taggerNumber">
+      <el-table-column width="180" align="center" label="DubaiCode">
         <template scope="scope">
           <span>{{scope.row.taggerNumber}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="180" align="center" label="assetPeople">
+      <el-table-column width="180" align="center" label="User in charge">
         <template scope="scope">
           <span>{{scope.row.assetPeople}}</span>
         </template>
@@ -137,20 +143,18 @@
           <el-input v-else v-model="form.beijingCode" placeholder="beijingCode"></el-input>
         </el-form-item>
 
-
-        <!--<el-form-item label="assetPeople" prop="assetPeople">-->
-          <!--<el-select v-model="form.assetPeople"  filterable remote placeholder="请输入关键词" :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">-->
-            <!--<el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName" :value="item.employeeName"> </el-option>-->
-          <!--</el-select>-->
-        <!--</el-form-item>-->
-
-
-        <el-form-item label="assetStatus">
-          <el-select class="filter-item" v-model="form.assetStatus" placeholder="please select assetStatus">
-            <el-option v-for="item in  assetStatusOptions" :key="item" :label="assetStatusOptionsC[item]"
-                       :value="item"></el-option>
+        <el-form-item label="assetPeople" prop="assetPeople">
+          <el-select v-model="form.assetPeople"  filterable remote placeholder="User in charge" :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">
+            <el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName" :value="item.employeeName"> </el-option>
           </el-select>
         </el-form-item>
+
+        <!--<el-form-item label="assetStatus">-->
+          <!--<el-select class="filter-item" v-model="form.assetStatus" placeholder="please select assetStatus">-->
+            <!--<el-option v-for="item in  assetStatusOptions" :key="item" :label="assetStatusOptionsC[item]"-->
+                       <!--:value="item"></el-option>-->
+          <!--</el-select>-->
+        <!--</el-form-item>-->
 
         <!--<el-form-item label="描述">-->
         <!--<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" placeholder="请输入内容"-->
@@ -214,10 +218,11 @@
   import {mapGetters} from 'vuex';
 
   var placeholders = {
-    "assetType": "input assetClass",
+    "assetType": "input assetType",
     "serialNumber": "input serialNumber",
     "computerModel": "input computerModel",
-    "taggerNumber": "input taggerNumber"
+    "taggerNumber": "input taggerNumber",
+    "user in charge" : "input user"
   };
   export default {
     name: 'user',
@@ -290,7 +295,7 @@
         assetOptions: ['cpu', 'ldaptop', 'moniter', 'phone', 'avt',
           'server', 'storage', 'network switch', 'work station', 'it rack', 'printer', 'Thin Client', 'Projector', 'Fax Machine', 'others'],
         assetStatusOptions: [0, 1, 2],
-        assetStatusOptionsC: ['FREE', 'IN USE', 'BROKEN'],
+        assetStatusOptionsC: ['IN STORE', 'IN USE', 'BROKEN'],
         dialogFormVisible: false,
         dialogStatus: '',
         userManager_btn_edit: false,
@@ -305,7 +310,7 @@
         // Multiconditional query
         mulQuery: {
           placeholder: placeholders["assetType"],
-          select: 'assetName', //搜索框的搜索字段,
+          select: 'assetType', //搜索框的搜索字段,
           keywords: ''
         },
 

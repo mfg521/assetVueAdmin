@@ -90,7 +90,7 @@
           <el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>
           <el-button size="small" type="success" @click="handleQrCord(scope.row)">QRCode</el-button>
 
-          <el-button v-if="assetManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">delete
+          <el-button v-if="assetManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">return
           </el-button>
         </template>
       </el-table-column>
@@ -352,7 +352,14 @@
           type: 'warning'
         })
           .then(() => {
-            delObj(row.assetId)
+            var assetClas=""
+            if(row.financeCode===undefined){
+              assetClas=1;
+            }else {
+              assetClas=0;
+            }
+
+            putObj(row.assetId,{assetId:row.assetId,assetClass: assetClas})
               .then(() => {
                 this.$notify({
                   title: 'Delete',
