@@ -20,7 +20,7 @@
               style="width: 100%">
       <el-table-column align="center" label="no" width="60">
         <template scope="scope">
-          <span>{{scope.row.employeeId}}</span>
+          <span>{{tableKey}}</span>
         </template>
       </el-table-column>
       <el-table-column width="90" align="center" label="photo">
