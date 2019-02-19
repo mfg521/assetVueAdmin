@@ -10,6 +10,7 @@
           <el-option label="serialNumber" value="serialNumber"></el-option>
           <el-option label="computerModel" value="computerModel"></el-option>
           <el-option label="taggerNumber" value="taggerNumber"></el-option>
+          <el-option label="user in charge" value="assetPeople"></el-option>
         </el-select>
       </el-input>
 
@@ -131,11 +132,18 @@
           <el-input v-if="dialogStatus == 'create'" v-model="form.beijingCode" placeholder="please input beijingCode"></el-input>
           <el-input v-else v-model="form.beijingCode" placeholder="beijingCode"></el-input>
         </el-form-item>
-        <el-form-item label="assetStatus">
-          <el-select class="filter-item" v-model="form.assetStatus" placeholder="please select assetStatus">
-            <el-option v-for="item in  assetStatusOptions" :key="item" :label="assetStatusOptionsC[item]" :value="item"></el-option>
+
+        <el-form-item label="assetPeople" prop="assetPeople">
+          <el-select v-model="form.assetPeople"  filterable remote placeholder="User in charge" :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">
+            <el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName" :value="item.employeeName"> </el-option>
           </el-select>
         </el-form-item>
+
+        <!--<el-form-item label="assetStatus">-->
+          <!--<el-select class="filter-item" v-model="form.assetStatus" placeholder="please select assetStatus">-->
+            <!--<el-option v-for="item in  assetStatusOptions" :key="item" :label="assetStatusOptionsC[item]" :value="item"></el-option>-->
+          <!--</el-select>-->
+        <!--</el-form-item>-->
 
         <!--<el-form-item label="描述">-->
           <!--<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" placeholder="请输入内容"-->
@@ -196,6 +204,12 @@
     name: 'user',
     data() {
       return {
+        remoteDataForm:{
+          assetPeople:[],
+          total: undefined,
+          loading: false,
+          lItems: [],
+        },
         form: {
           computerModel: undefined,
           beijingCode: undefined,
@@ -253,7 +267,7 @@
           limit: 20,
           assetClass: 1
         },
-        assetOptions: ['cpu', 'ldaptop','moniter','phone','avt',
+        assetOptions: ['cpu', 'laptop','monitor','phone','avt',
           'server','storage','network switch','work station','it rack','printer','Thin Client','Projector','Fax Machine','others'],
         assetStatusOptions: [0,1,2],
         assetStatusOptionsC:['FREE','IN USE','BROKEN'],
@@ -304,7 +318,9 @@
           })
       },
       handleFilter() {
-        this.listQuery={}
+        this.listQuery={
+          assetClass: 1
+        }
         this.getList();
       },
       handleSizeChange(val) {

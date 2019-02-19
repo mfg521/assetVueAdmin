@@ -131,11 +131,12 @@
           <el-input v-if="dialogStatus == 'create'" v-model="form.beijingCode" placeholder="please input beijingCode"></el-input>
           <el-input v-else v-model="form.beijingCode" placeholder="beijingCode"></el-input>
         </el-form-item>
-        <el-form-item label="assetStatus">
-          <el-select class="filter-item" v-model="form.assetStatus" placeholder="please select assetStatus">
-            <el-option v-for="item in  assetStatusOptions" :key="item" :label="assetStatusOptionsC[item]" :value="item"></el-option>
-          </el-select>
-        </el-form-item>
+
+        <!--<el-form-item label="assetStatus">-->
+          <!--<el-select class="filter-item" v-model="form.assetStatus" placeholder="please select assetStatus">-->
+            <!--<el-option v-for="item in  assetStatusOptions" :key="item" :label="assetStatusOptionsC[item]" :value="item"></el-option>-->
+          <!--</el-select>-->
+        <!--</el-form-item>-->
 
         <!--<el-form-item label="描述">-->
           <!--<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" placeholder="请输入内容"-->
@@ -359,7 +360,7 @@
               assetClas=0;
             }
 
-            putObj(row.assetId,{assetId:row.assetId,assetClass: assetClas})
+            putObj(row.assetId,{assetId:row.assetId,assetClass: assetClas,financeCode:row.financeCode})
               .then(() => {
                 this.$notify({
                   title: 'Delete',
