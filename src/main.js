@@ -25,6 +25,7 @@ import {getToken, setToken, removeToken} from 'utils/auth';
 import 'babel-polyfill';
 import MintUi from 'mint-ui';
 import 'mint-ui/lib/style.css'
+import VueLazyload from 'vue-lazyload'
 
 // 支持IE执行原生script
 
@@ -36,6 +37,7 @@ Vue.use(ElementUI);
 Vue.use(vueWaves);
 Vue.use(iView)
 Vue.use(MintUi)
+Vue.use(VueLazyload)
 
 // register global utility filters.
 Object.keys(filters).forEach(key => {

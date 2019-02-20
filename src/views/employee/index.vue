@@ -32,7 +32,8 @@
         <template scope="scope">
           <!--<span>{{scope.row.employeeUuid}}</span>-->
           <!--<img :src="'http://172.30.1.81:8765/api/asset/employee/employeeUrl?employeeUrl='+scope.row.employeeUrl" style="width: 50px;height: 50px"/>-->
-          <img :src="'http://172.30.1.81:8765/api/asset/employee/employeeUrl?employeeUrl='+scope.row.employeeUrl"
+          <img v-lazy="'http://172.30.1.81:8765/api/asset/employee/employeeUrl?employeeUrl='+scope.row.employeeUrl"
+               :key="'http://172.30.1.81:8765/api/asset/employee/employeeUrl?employeeUrl='+scope.row.employeeUrl"
                style="width: 50px;height: 50px"/>
         </template>
       </el-table-column>

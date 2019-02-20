@@ -21,7 +21,7 @@
               <!--如果当前位置有员工-->
               <div v-if="employe.employeeName!==undefined" draggable="true" class="select-item"
                    @dragstart="drag($event,employe)">
-                <img :src="'http://172.30.1.81:8765/api/asset/employee/employeeUrl?employeeUrl='+employe.employeeUrl"
+                <img v-lazy="'http://172.30.1.81:8765/api/asset/employee/employeeUrl?employeeUrl='+employe.employeeUrl"
                      :onerror="defaultImg" style="width: 100%;height: 100%">
               </div>
             </div>
@@ -116,6 +116,9 @@
             </div>
           </div>
         </div>
+
+        <!--展示房间号-->
+        <!--<div>{{floor6.employeeBlocks.roomNum}}</div>-->
 
       </div>
 
