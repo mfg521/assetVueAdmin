@@ -24,7 +24,6 @@
 
       <el-button class="filter-item" style="margin-left: 10px;" type="primary"><a
         href="http://172.30.1.81:8763/download/report">Download</a></el-button>
-
     </div>
 
     <!--列表-->
@@ -97,7 +96,7 @@
           <el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>
           <el-button size="small" type="success" @click="handleQrCord(scope.row)">QRCode</el-button>
 
-          <el-button v-if="assetManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">delete
+          <el-button v-if="assetManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">scrap
           </el-button>
         </template>
       </el-table-column>

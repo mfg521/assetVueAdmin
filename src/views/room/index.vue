@@ -142,7 +142,7 @@
         <el-form :model="changeEmployeeForm" ref="recordForm" label-width="100px">
           <el-form-item label="employeeNum" prop="employeeNum">
             <!--<el-input v-model="changeEmployeeForm.employeeNum"></el-input>-->
-            <el-select v-model="changeEmployeeForm.employeeNum" filterable remote placeholder="请输入关键词"
+            <el-select v-model="changeEmployeeForm.employeeNum" filterable remote placeholder="Please enter the keyword"
                        :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">
               <el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName"
                          :value="item.emailAddress"></el-option>

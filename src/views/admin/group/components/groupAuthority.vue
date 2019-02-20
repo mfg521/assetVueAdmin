@@ -1,7 +1,7 @@
 <template>
 <el-row>
   <el-col :span="24">
-    <el-button type="primary" v-if="groupManager_menu" @click="update">保存</el-button>
+    <el-button type="primary" v-if="groupManager_menu" @click="update">Save</el-button>
   </el-col>
   <el-col :span="8" style='margin-top:15px;'>
     <el-input placeholder="输入关键字进行过滤" v-model="filterText"> </el-input>
@@ -11,30 +11,30 @@
   <el-col :span="16" style='margin-top:15px;'>
     <el-table ref="elementTable" :data="list" border fit highlight-current-row @select="handleSelectionChange" style="width: 100%">
       <el-table-column v-if="groupManager_element" type="selection" width="55"> </el-table-column>
-      <el-table-column width="200px" align="center" label="资源编码"><template scope="scope">
+      <el-table-column width="200px" align="center" label="ResourceCode"><template scope="scope">
     <span>
         {{scope.row.code}}</span>
 </template>
 
 </el-table-column>
-    <el-table-column width="200px" align="center" label="资源类型"><template scope="scope">
+    <el-table-column width="200px" align="center" label="ResourceType"><template scope="scope">
     <span>
         {{scope.row.type}}</span>
 </template>
 
 </el-table-column>
-    <el-table-column width="200px" align="center" label="资源名称"><template scope="scope">
+    <el-table-column width="200px" align="center" label="ResourceName"><template scope="scope">
     <span>
         {{scope.row.name}}</span>
 </template>
 
 </el-table-column>
-    <el-table-column width="200px" align="center" label="资源地址"><template scope="scope">
+    <el-table-column width="200px" align="center" label="ResourceUrl"><template scope="scope">
     <span>
         {{scope.row.uri}}</span>
 </template>
 </el-table-column>
-    <el-table-column width="200px" align="center" label="资源请求类型"><template scope="scope">
+    <el-table-column width="200px" align="center" label="ResourceRequestType"><template scope="scope">
     <span>
         {{scope.row.method}}</span>
 </template>
@@ -166,8 +166,8 @@ export default {
         menuTrees: ids.join()
       }).then(() => {
         this.$notify({
-          title: '成功',
-          message: '保存成功',
+          title: 'Save',
+          message: 'Save Successful',
           type: 'success',
           duration: 2000
         });

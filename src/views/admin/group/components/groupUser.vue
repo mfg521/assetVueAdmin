@@ -1,17 +1,17 @@
 <template>
 <el-form label-width="80px">
-  <el-form-item label="群主|领导">
-    <el-select v-model="leaders" multiple filterable remote placeholder="请输入关键词" :remote-method="remoteLeaderMethod" :loading="loading">
+  <el-form-item label="Leader">
+    <el-select v-model="leaders" multiple filterable remote placeholder="Please enter keyword" :remote-method="remoteLeaderMethod" :loading="loading">
       <el-option v-for="item in lItems" :key="item.id" :label="item.name" :value="item.id"> </el-option>
     </el-select>
   </el-form-item>
-  <el-form-item label="组员|下属">
-    <el-select v-model="members" multiple filterable remote placeholder="请输入关键词" :remote-method="remoteMemberMethod" :loading="loading">
+  <el-form-item label="Underling">
+    <el-select v-model="members" multiple filterable remote placeholder="Please enter keyword" :remote-method="remoteMemberMethod" :loading="loading">
       <el-option v-for="item in mItems" :key="item.id" :label="item.name" :value="item.id"> </el-option>
     </el-select>
   </el-form-item>
   <el-form-item>
-    <el-button type="primary" v-if="groupManager_btn_userManager" @click="onSubmit">保存</el-button>
+    <el-button type="primary" v-if="groupManager_btn_userManager" @click="onSubmit">Save</el-button>
   </el-form-item>
 </el-form>
 </template>
@@ -89,8 +89,8 @@ export default {
       modifyUsers(this.groupId, vals).then(() => {
         this.$emit('closeUserDialog');
         this.$notify({
-          title: '成功',
-          message: '保存成功',
+          title: 'Save',
+          message: 'Save Successful',
           type: 'success',
           duration: 2000
         });
