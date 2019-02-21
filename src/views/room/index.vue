@@ -118,7 +118,7 @@
         </div>
 
         <!--展示房间号-->
-        <!--<div>{{floor6.employeeBlocks.roomNum}}</div>-->
+        <div>{{floor6.employeeBlocks.roomNum}}</div>
 
       </div>
 
