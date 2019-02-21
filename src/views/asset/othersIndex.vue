@@ -198,7 +198,7 @@
     getQrCode
   } from 'src/api/asset/asset/index';
   import {mapGetters} from 'vuex';
-
+  import {pageAsset} from 'src/api/asset/employee/index'
   var placeholders = {"assetType": "input assetClass","serialNumber": "input serialNumber", "computerModel": "input computerModel","taggerNumber":"input taggerNumber"};
   export default {
     name: 'user',
@@ -453,6 +453,23 @@
         window.document.body.innerHTML = oldstr;
         return false;
       },
+
+      remoteEmployeeMethod(query) {
+        if (query !== '') {
+          this.remoteDataForm.loading = true;
+          this.remoteDataForm.loading = false;
+          pageAsset({
+            employeeName: query
+          }).then(response => {
+            this.remoteDataForm.lItems = response.data.rows;
+            this.remoteDataForm.total = response.data.total;
+            this.remoteDataForm.loading = false;
+          });
+        } else {
+          this.remoteDataForm.lItems = [];
+        }
+      },
+
     }
   }
 </script>

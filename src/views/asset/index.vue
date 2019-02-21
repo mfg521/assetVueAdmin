@@ -28,14 +28,14 @@
 
     <!--列表-->
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row
-              style="width: 100%">
-      <el-table-column align="center" label="No" width="80">
+              style="width: 100%" :default-sort = "{prop: 'assetId,computerModel', order: 'descending'}">
+      <el-table-column align="center" label="No" width="80" sortable prop="assetId">
         <template scope="scope">
           <span>{{scope.row.assetId}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="150" align="center" label="ComputerModel">
+      <el-table-column width="170" align="center" label="ComputerModel" sortable prop="computerModel">
         <template scope="scope">
           <span>{{scope.row.computerModel}}</span>
         </template>
