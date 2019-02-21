@@ -115,6 +115,39 @@ export const constantRouterMap = [{
     }]
   },
   {
+    path: '/employeeManager',
+    component: Layout,
+    name: 'asset',
+    icon: 'setting',
+    authority: 'asset',
+    children: [{
+      path: 'employee',
+      component: _import('employee/index'),
+      name: 'employee',
+      authority: 'assetManager'
+    }, {
+      path: 'record',
+      component: _import('record/index'),
+      name: 'record',
+      authority: 'assetManager'
+    }, {
+        path: 'gesEmployee',
+        component: _import('employee/gesIndex'),
+        name: 'gesEmployee',
+        authority: 'assetManager'
+      }, {
+      path: 'missionEmployee',
+      component: _import('employee/missionIndex'),
+      name: 'missionEmployee',
+      authority: 'assetManager'
+    }, {
+      path: 'thridEmployee',
+      component: _import('employee/thirdIndex'),
+      name: 'thridEmployee',
+      authority: 'assetManager'
+    }]
+  },
+  {
     path: '/officeManager',
     component: Layout,
     name: 'office',
@@ -246,7 +279,7 @@ export const asyncRouterMap = [
     icon: 'setting',
     authority: 'employee',
     children: [{
-      path: 'employee',
+      path: 'IndexEmployee',
       component: _import('employee/index'),
       name: 'BJZZ_DG_employee',
       authority: 'employeeManager'
