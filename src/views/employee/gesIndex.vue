@@ -18,11 +18,22 @@
     <!--列表-->
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row
               style="width: 100%">
+
+      <el-table-column align="center" label="Operator" width="150">
+        <template scope="scope">
+          <el-button  size="small" type="success" @click="handleUpdate(scope.row)">edit
+          </el-button>
+          <!--<el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>-->
+          <el-button  size="small" type="danger" @click="handleDelete(scope.row)">delete
+          </el-button>
+        </template>
+      </el-table-column>
+
       <el-table-column
         type="index"
         width="80">
       </el-table-column>
-      <el-table-column width="90" align="center" label="photo">
+      <el-table-column width="90" align="center" label="Photo">
         <template scope="scope">
           <!--<span>{{scope.row.employeeUuid}}</span>-->
           <!--<img :src="'http://172.30.1.81:8765/api/asset/employee/employeeUrl?employeeUrl='+scope.row.employeeUrl" style="width: 50px;height: 50px"/>-->
@@ -76,15 +87,7 @@
           <span>{{scope.row.dubaiMobileNo}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="Operator" width="250">
-        <template scope="scope">
-          <el-button  size="small" type="success" @click="handleUpdate(scope.row)">edit
-          </el-button>
-          <!--<el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>-->
-          <el-button  size="small" type="danger" @click="handleDelete(scope.row)">delete
-          </el-button>
-        </template>
-      </el-table-column>
+
     </el-table>
 
     <div v-show="!listLoading" class="pagination-container">

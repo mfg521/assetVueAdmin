@@ -29,11 +29,24 @@
     <!--列表-->
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row
               style="width: 100%" :default-sort = "{prop: 'assetId,computerModel', order: 'descending'}">
+
+      <el-table-column align="center" label="Operation" width="300">
+        <template scope="scope">
+          <el-button v-if="assetManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">edit
+          </el-button>
+          <el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>
+          <el-button size="small" type="success" @click="handleQrCord(scope.row)">QRCode</el-button>
+
+          <el-button v-if="assetManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">scrap
+          </el-button>
+        </template>
+      </el-table-column>
       <el-table-column align="center" label="No" width="80" sortable prop="assetId">
         <template scope="scope">
           <span>{{scope.row.assetId}}</span>
         </template>
       </el-table-column>
+
 
       <el-table-column width="170" align="center" label="ComputerModel" sortable prop="computerModel">
         <template scope="scope">
@@ -89,17 +102,7 @@
       <!--<span>{{scope.row.updName}}</span>-->
       <!--</template>-->
       <!--</el-table-column>-->
-      <el-table-column align="center" label="Operation" width="300">
-        <template scope="scope">
-          <el-button v-if="assetManager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">edit
-          </el-button>
-          <el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>
-          <el-button size="small" type="success" @click="handleQrCord(scope.row)">QRCode</el-button>
 
-          <el-button v-if="assetManager_btn_del" size="small" type="danger" @click="handleDelete(scope.row)">scrap
-          </el-button>
-        </template>
-      </el-table-column>
     </el-table>
 
     <!--分页脚-->

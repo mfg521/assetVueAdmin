@@ -18,7 +18,17 @@
     <!--列表-->
     <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row
               style="width: 100%">
-      <el-table-column
+      <el-table-column align="center" label="Operator" width="150">
+        <template scope="scope">
+          <el-button  size="small" type="success" @click="handleUpdate(scope.row)">edit
+          </el-button>
+          <!--<el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>-->
+          <el-button  size="small" type="danger" @click="handleDelete(scope.row)">delete
+          </el-button>
+        </template>
+      </el-table-column>
+
+      <el-table-column align="center" label="No"
         type="index"
         width="80">
       </el-table-column>
@@ -76,15 +86,7 @@
           <span>{{scope.row.dubaiMobileNo}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="Operator" width="250">
-        <template scope="scope">
-          <el-button  size="small" type="success" @click="handleUpdate(scope.row)">edit
-          </el-button>
-          <!--<el-button size="small" type="success" @click="handleRecord(scope.row)">record</el-button>-->
-          <el-button  size="small" type="danger" @click="handleDelete(scope.row)">delete
-          </el-button>
-        </template>
-      </el-table-column>
+
     </el-table>
 
     <div v-show="!listLoading" class="pagination-container">
