@@ -36,6 +36,7 @@
     <!--</el-row>-->
 
     <p style="text-align: center;font-size: 8rem">Welcome</p>
+    <p style="font-size: 4rem">The following assets belong to you:</p>
     <el-row>
       <el-col :span="6" v-for="(asset,index) in this.statisticsData.assetList" :key="index">
         <el-card class="box-card">
