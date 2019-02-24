@@ -79,16 +79,17 @@
 
         <!--展示资产详细信息-->
         <div class="showAssetInfo" x-placement="bottom">
-          <div class="ivu-tooltip-inner" style="max-width: none">
-            <div v-if=" this.CurentAseet !== '' " style="text-align: center; width: auto">
+          <div v-if=" this.CurentAssetList.length!==0" class="ivu-tooltip-inner" style="max-width: none">
+            <div v-for="(CurentAseetDetail,index) in this.CurentAssetList" :key="index"
+                 style="text-align: center; width: auto">
               <div style="text-align: left; width: 80%;float: left ">
                 <span style="font-weight: bold; clear: both;font-size: 15px">Record Details:</span>
                 <hr style="color: black;margin-bottom: 5px;margin-top: 5px"/>
                 <p style="margin: 0"><span
-                  style="margin-right: 10%; font-weight: bold; font-size: 16px">Serial Number</span>{{CurentAseet.serialNumber}}
+                  style="margin-right: 10%; font-weight: bold; font-size: 16px">Serial Number</span>{{CurentAseetDetail.serialNumber}}
                 </p>
                 <p style="margin: 0"><span
-                  style="margin-right: 10%; font-weight: bold;font-size: 16px  ">BorrowedDate</span>{{CurentAseet.borrowedDate}}
+                  style="margin-right: 10%; font-weight: bold;font-size: 16px  ">BorrowedDate</span>{{CurentAseetDetail.borrowedDate}}
                 </p>
                 <!--<p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;">beijing Code</span>{{CurentAseet.beijingCode}}</p>-->
                 <!--<p style="margin: 0"><span style="margin-right: 10%; font-weight: bold;">FN Code</span>{{CurentAseet.financeCode}}</p>-->
@@ -104,57 +105,61 @@
                 <span @click="returnConfirms"><el-button type="warning">Remove</el-button></span>
               </div>
             </div>
-            <div v-else>
-              <div style="font-size: 16px">
-                <span v-if="this.assetType==='cpu'">NO CPU ASSET</span>
-                <span v-else-if="this.assetType==='monitor'">No MONITOR ASSET</span>
-                <span v-else-if="this.assetType==='laptop'">No LAPTOP ASSET</span>
-                <span v-else="this.assetType==='phone'">No PHONE ASSET</span>
-                <span @click="dialog.dialogFormVisible = true"><el-button type="info"
-                                                                          style="margin-left:2%">Add new</el-button></span>
-              </div>
+
+          </div>
+          <div v-else class="ivu-tooltip-inner" style="max-width: none">
+            <div style="font-size: 16px">
+              <span v-if="this.assetType==='cpu'">NO CPU ASSET</span>
+              <span v-else-if="this.assetType==='monitor'">No MONITOR ASSET</span>
+              <span v-else-if="this.assetType==='laptop'">No LAPTOP ASSET</span>
+              <span v-else="this.assetType==='phone'">No PHONE ASSET</span>
+              <span @click="dialog.dialogFormVisible = true"><el-button type="info"
+                                                                        style="margin-left:2%">Add new</el-button></span>
             </div>
           </div>
+
         </div>
-
-        <!--展示房间号-->
-        <div>{{floor6.employeeBlocks.roomNum}}</div>
-
       </div>
 
-      <!--新增修改dialog -->
-      <el-dialog :title="dialog.dialogTitle" :visible.sync="dialog.dialogFormVisible">
-        <el-form :model="changeAssetForm" ref="recordForm" label-width="100px">
 
-          <el-form-item label="serialNumber" prop="serialNumber">
-            <el-input v-model="changeAssetForm.serialNumber"></el-input>
-          </el-form-item>
+      <!--展示房间号-->
+      <div>{{floor6.employeeBlocks.roomNum}}</div>
 
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialog.dialogFormVisible = false">Cancel</el-button>
-          <el-button type="primary" @click="save">Confirm</el-button>
-        </div>
-      </el-dialog>
-
-      <!--新增employee dialog     -->
-      <el-dialog :title="employeeDialog.dialogTitle" :visible.sync="employeeDialog.dialogFormVisible">
-        <el-form :model="changeEmployeeForm" ref="recordForm" label-width="100px">
-          <el-form-item label="employeeNum" prop="employeeNum">
-            <!--<el-input v-model="changeEmployeeForm.employeeNum"></el-input>-->
-            <el-select v-model="changeEmployeeForm.employeeNum" filterable remote placeholder="Please enter the keyword"
-                       :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">
-              <el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName"
-                         :value="item.emailAddress"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="employeeDialog.dialogFormVisible = false">Cancel</el-button>
-          <el-button type="primary" @click="saveEmployee">Confirm</el-button>
-        </div>
-      </el-dialog>
     </div>
+
+    <!--新增修改dialog -->
+    <el-dialog :title="dialog.dialogTitle" :visible.sync="dialog.dialogFormVisible">
+      <el-form :model="changeAssetForm" ref="recordForm" label-width="100px">
+
+        <el-form-item label="serialNumber" prop="serialNumber">
+          <el-input v-model="changeAssetForm.serialNumber"></el-input>
+        </el-form-item>
+
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialog.dialogFormVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="save">Confirm</el-button>
+      </div>
+    </el-dialog>
+
+    <!--新增employee dialog     -->
+    <el-dialog :title="employeeDialog.dialogTitle" :visible.sync="employeeDialog.dialogFormVisible">
+      <el-form :model="changeEmployeeForm" ref="recordForm" label-width="100px">
+        <el-form-item label="employeeNum" prop="employeeNum">
+          <!--<el-input v-model="changeEmployeeForm.employeeNum"></el-input>-->
+          <el-select v-model="changeEmployeeForm.employeeNum" filterable remote placeholder="Please enter the keyword"
+                     :remote-method="remoteEmployeeMethod" :loading="this.remoteDataForm.loading">
+            <el-option v-for="item in this.remoteDataForm.lItems" :key="item.employeeId" :label="item.employeeName"
+                       :value="item.emailAddress"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="employeeDialog.dialogFormVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="saveEmployee">Confirm</el-button>
+      </div>
+    </el-dialog>
+  </div>
   </div>
 </template>
 
@@ -162,7 +167,7 @@
   import draggable from 'vuedraggable';
   import {mapState} from 'vuex'
   import {getAssetInfo, returnAsset, changeAsset} from "../../api/asset/record";
-  import {changeEmpByDrop, changeOrSaveEmpBlock,pageAsset} from "../../api/asset/employee";
+  import {changeEmpByDrop, changeOrSaveEmpBlock, pageAsset} from "../../api/asset/employee";
 
   let dom = '';
   export default {
@@ -199,6 +204,7 @@
         },
         CurrentEmployeeUUID: '',
         CurentAseet: '',
+        CurentAssetList: [],
         CurentEmployee: {},
         assetType: '',
         defaultImg: 'this.src="' + require('../../../static/images/default.png') + '"',
@@ -270,6 +276,7 @@
 
       //根据用户编号和用户的资产号码获取用户对应资产的详细信息
       async clickForAssetInfo(assetType) {
+        this.CurentAssetList = []
         console.log(assetType)
         this.CurentAseet = ''
         this.assetType = assetType;
@@ -277,8 +284,12 @@
         const emailAddress = this.CurentEmployee.emailAddress
         const asset = await getAssetInfo({emailAddress, employeeUuid, assetType});
         if (asset.length > 0) {
+          this.CurentAssetList = asset;
+          console.log(this.CurentAssetList)
           this.CurentAseet = asset[0]
           console.log(this.CurentAseet)
+        }else {
+          console.log(this.CurentAssetList)
         }
       },
 
@@ -484,7 +495,7 @@
     background-color rgba(170, 170, 170, 0.5)
   }
 
-  drag-div1:selection{
+  drag-div1:selection {
     background-color: red
   }
 
