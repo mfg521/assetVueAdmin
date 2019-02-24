@@ -72,6 +72,13 @@
           <span>{{scope.row.assetType}}</span>
         </template>
       </el-table-column>
+
+      <el-table-column width="120" align="center" label="Company">
+        <template scope="scope">
+          <span>{{scope.row.assetOrigin}}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column width="80" align="center" label="status">
         <template scope="scope">
           <span v-if="scope.row.assetStatus===0">FREE</span>

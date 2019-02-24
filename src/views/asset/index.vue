@@ -77,7 +77,7 @@
       </el-table-column>
       <el-table-column width="120" align="center" label="Company">
         <template scope="scope">
-          <span>{{scope.row.company}}</span>
+          <span>{{scope.row.assetOrigin}}</span>
         </template>
       </el-table-column>
       <el-table-column width="80" align="center" label="Status">
